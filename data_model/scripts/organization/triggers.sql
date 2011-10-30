@@ -38,7 +38,7 @@ returns trigger as $$
 begin
 	if new.last_updated_on is null then new.last_updated_on = 'now'; end if;
 	if new.last_updated_on < old.last_updated_on then return null; end if;
-	if new.first_name is distinct from old.name then perform organization_archive_value(old.id, 'name', old.name, new.last_updated_on); end if;
+	if new.name is distinct from old.name then perform organization_archive_value(old.id, 'name', old.name, new.last_updated_on); end if;
 	if new.disambiguation is distinct from old.disambiguation then perform organization_archive_value(old.id, 'disambiguation', old.disambiguation, new.last_updated_on); end if;
 	return new;
 end; $$ language plpgsql;
