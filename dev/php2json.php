@@ -6,7 +6,7 @@ $object = array(
     'label' => 'Test CZ 2010',
     'description' => 'Test CZ 2010',
     'currency' => 'CZK',
-    'unique_keys' =>'transaction_id',
+    'unique_keys' =>array('transaction_id'),
   ),
   'mapping' => array (
     'date' => array (
@@ -49,7 +49,7 @@ $object = array(
       'default_value' => '',
       'column' => 'transaction_id',
     ),
-    'id' => array (
+    'chapter' => array (
       'type' => 'classifier',
       'description' => 'Chapter',
       'label' => 'Chapter',
