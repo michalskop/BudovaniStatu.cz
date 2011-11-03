@@ -427,25 +427,24 @@
             headerHeight: 15,
             fontColor: 'black',
             showScale: true,
-            maxPostDepth: 1,
+            maxPostDepth: 3,
             headerHeight: 20
             });
             
-             google.visualization.events.addListener(tree, 'select',
-selectHandler); 
+             //google.visualization.events.addListener(tree, 'select',selectHandler); 
 
-function selectHandler(e) {
+/*function selectHandler(e) {
     var selection = tree.getSelection(); 
       var message = "";
       for (var i = 0; i < selection.length; i++) {
       var item = selection[i]; 
       alert(item.row + data.getValue(item.row,2));
       //var str = data.getFormattedValue(item.row, item.column);
-        /*message += '{row:' + item.row + ',column:' + item.column + '} = ' + str + '\n'; */
+        //message += '{row:' + item.row + ',column:' + item.column + '} = ' + str + '\n';
       }
       alert (selection.length);
     
-    }
+    }*/
     
       }
       

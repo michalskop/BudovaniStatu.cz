@@ -11,7 +11,7 @@
  *
  * Primary key is column <code>id</code>.
  */
-class Organization
+class Entry
 {
 	/// instance holding a list of table columns and table handling functions
 	private $entity;
@@ -22,8 +22,8 @@ class Organization
 	public function __construct()
 	{
 		$this->entity = new Entity(array(
-			'name' => 'organization',
-			'columns' => array('code', 'name', 'short_name'),
+			'name' => 'entry',
+			'columns' => array('code', 'name', 'description'),
 			'pkey_columns' => array('code')
 		));
 	}

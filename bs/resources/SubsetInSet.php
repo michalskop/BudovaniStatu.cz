@@ -11,7 +11,7 @@
  *
  * Primary key is column <code>id</code>.
  */
-class Hierarchy
+class SubsetInSet
 {
 	/// instance holding a list of table columns and table handling functions
 	private $entity;
@@ -22,9 +22,9 @@ class Hierarchy
 	public function __construct()
 	{
 		$this->entity = new Entity(array(
-			'name' => 'hierarchy',
-			'columns' => array('sup_code', 'sup_table', 'sub_code','sub_table','tree_id'),
-			'pkey_columns' => array('sup_code', 'sup_table','sub_code','sub_table','tree_id'),
+			'name' => 'subset_in_set',
+			'columns' => array('sup_set_code', 'sup_set_kind_code', 'sub_set_code','sub_set_kind_code'),
+			'pkey_columns' => array('sup_set_code', 'sup_set_kind_code', 'sub_set_code','sub_set_kind_code'),
 		));
 	}
 
