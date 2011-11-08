@@ -2609,7 +2609,7 @@ INSERT INTO subset_in_set (sub_set_code, sub_set_kind_code, sup_set_code, sup_se
 ('45806985','organization','504','chapter'),
 ('63108089','organization','375','chapter'),
 ('6882','organization','312','chapter'),
-('529397','organization','312','chapter'),
+('529397','organization','313','chapter'),
 ('6904','organization','312','chapter'),
 ('6866','organization','312','chapter'),
 ('6912','organization','312','chapter'),
@@ -2693,3 +2693,12 @@ INSERT INTO subset_in_set (sub_set_code, sub_set_kind_code, sup_set_code, sup_se
 ('566306','organization','313','chapter'),
 ('508021','organization','313','chapter'),
 ('663425','organization','313','chapter');
+
+--
+
+INSERT INTO subset_in_set (sub_set_code, sub_set_kind_code, sup_set_code, sup_set_kind_code) VALUES
+('75064421','organization','333','chapter'),
+('13693972','organization','322','chapter'),
+('86594346','organization','338','chapter'),
+('67980074','organization','347','chapter'),
+('62933582','organization','315','chapter');

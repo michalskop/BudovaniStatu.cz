@@ -1,0 +1,72 @@
+{
+"dataset":
+    {
+    "model_rev": 1,
+    "name":"cz-budget-2010",
+    "label":"Test CZ 2010",
+    "description":"Test CZ 2010",
+    "currency":"CZK",
+    "unique_keys":["transaction_id"]
+    },  
+"mapping":{
+
+    "from": {
+      "fields": [  {"column": "paid_by", "name": "label", "datatype": "string"}  ],
+      "type": "entity",
+      "description": "Paid by",
+      "label": "Paid by"
+    },
+
+    "to": {
+      "fields": [   {"constant": "Public", "name": "label", "datatype": "constant"}   ],
+      "type": "entity",
+      "description": "Paid to",
+      "label": "Paid to"
+    },
+
+    "time": {
+      "column": "date",
+      "type": "value",
+      "label": "Дата",
+      "description": "",
+      "datatype": "date"
+    },
+
+    "amount": {
+      "default_value": "",
+      "description": "",
+      "column": "amount",
+      "label": "",
+      "datatype": "float",
+      "type": "value"
+    },
+
+    "transaction_id": {
+      "default_value": "",
+      "description": "",
+      "column": "transaction_id",
+      "label": "transaction_id",
+      "datatype": "string",
+      "type": "value"
+    },
+
+    "chapter": {
+      "fields": [ { "column": "chapter", "datatype": "string",  "default_value": "", "constant": "",  "name": "label" } ],
+      "label": "Chapter",
+      "type": "classifier",
+      "description": "chapter",
+      "taxonomy": "cz-budget-2010"
+    }
+   },
+"views": [
+    {
+      "entity": "dataset",
+      "label": "Breakdown by chapter",
+      "name": "default",
+      "dimension": "dataset",
+      "breakdown": "chapter",
+      "filters": {"name": "cz-budget-2010"}
+    }
+    ]
+}
+
