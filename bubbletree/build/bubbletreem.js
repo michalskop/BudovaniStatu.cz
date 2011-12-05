@@ -437,7 +437,7 @@ var BubbleTree = function(config, onHover, onUnHover) {
 			for (i in me.displayObjects) me.displayObjects[i].hideFlag = true;
 			
 		
-			if (node == root || node.parent == root && node.children.length < 2) {
+			if (node == root || node.parent == root && node.children.length < 1) { //**ms
 						
 				t.$(me).bubbleScale = 1.0;
 				
@@ -472,8 +472,8 @@ var BubbleTree = function(config, onHover, onUnHover) {
 				// node is not the root node
 	
 				var origNode = node; // save the reference of the node..
-
-				if (node.children.length < 2) { // ..because if it has no children..
+				//**ms
+				if (node.children.length < 1) { // ..because if it has no children..
 					node = node.parent;         // ..we center on its parent
 				} 
 				
@@ -998,7 +998,7 @@ BubbleTree.MouseEventGroup = function(target, members) {
 		var me = this;
 		//**ms
 		//$("#table").html(my_dump(me.target.node.children));
-		//alert(my_dump(me.target.node.children));
+		//alert(my_dump(me.target.node.label));
 		//alert(me.target.node.label);
 		my_table(me.target.node);
 		$(function() {
@@ -1425,7 +1425,7 @@ BubbleTree.Bubbles.Plain = function(node, bubblechart, origin, radius, angle, co
 		if (!me.visible) return;
 		
 		me.circle.attr({ cx: me.pos.x, cy: me.pos.y, r: r, 'fill-opacity': me.alpha });
-		if (me.node.children.length > 1) me.dashedBorder.attr({ cx: me.pos.x, cy: me.pos.y, r: r-4, 'stroke-opacity': me.alpha * 0.9 });
+		if (me.node.children.length > 0) me.dashedBorder.attr({ cx: me.pos.x, cy: me.pos.y, r: r-4, 'stroke-opacity': me.alpha * 0.9 }); //**ms me.node.children.length > 1 -> 0
 		else me.dashedBorder.attr({ 'stroke-opacity': 0 });
 		
 
