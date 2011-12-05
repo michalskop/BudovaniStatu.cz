@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Rozpočet ČR 2010</title>
+	<script type="text/javascript" src="../lib/jquery-1.5.2.min.js"></script>
+	<script type="text/javascript" src="../lib/jquery.history.js"></script>
+	<script type="text/javascript" src="../lib/raphael.js"></script>
+
+	<script type="text/javascript" src="../lib/vis4.js"></script>
+	<script type="text/javascript" src="../lib/Tween.js"></script>
+	<script type="text/javascript" src="../build/bubbletreem.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="../build/bubbletree.css" />
+	<script type="text/javascript" src="../styles/cofog.js"></script>
+	
+	<script type="text/javascript" src="./trialdata.js"></script>
+	
+	
+	<script type="text/javascript">    
+	$(function() {
+	  		
+	
+       $.ajax({
+		  url: 'http://localhost/michal/budovanistatu.cz/bubbletree/dev/dataz4.json',
+		  dataType: 'json',
+		  success: function (d) {
+		  		/*d.children = dd;
+		    	d.label='Rozpočet';
+				d.id= 't';
+				d.urlLabel='tx';
+				d.amount=1279434643200;*/
+				//alert(my_dump(d.children));
+
+			
+			new BubbleTree({
+				data: d,
+				container: ".bubbletree",
+				maxNodesPerLevel: 15
+			});
+			
+		  },
+		  async: false
+		});
+
+	});
+	$(function() {
+  $(".table-row").click(function() {
+    var html = '';
+    var url = '';
+    for (year = 2006; year <= 2010; year++) {
+		url_src = 'http://cz.cecyf.megivps.pl/api/json/dataset/0/view/0/issue/'+year+'/'+ $(this).attr('id')+'/';
+		url = 'http://localhost/michal/budovanistatu.cz/bubbletree/dev/get.php?url='+encodeURI(url_src);
+		$.ajax({
+			  url: url,
+			  dataType: 'json',
+			  success: function (data) {
+				//alert (my_dump(data.data));
+				html += data.data[0].hodnota + ',';
+			  },
+			  async : false
+		});
+	}
+	$("#cell-"+$(this).attr('id')).html(html);
+  });
+});
+
+
+	function bubble(d) {	
+	
+		new BubbleTree({
+				data: d,
+				container: ".bubbletree",
+			});	
+    }                                   
+	</script>
+
+</head>
+<body>
+	<div id="breadcrumbs">X</div>
+	<div class="bubbletree-wrapper" style="width:800px;height:800px">
+		<div class="bubbletree"></div>
+	</div>
+	<div id="table"></div>
+	
+</body>
+</html>
+

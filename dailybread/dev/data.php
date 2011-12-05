@@ -21,7 +21,7 @@ $result = json_decode(file_get_contents($url));
 if ($result->response == 'OK') {
   foreach ($result->data as $row) {
     //print_r($row);
-    echo implode(';',array($row->name,$row->idef,$row->type,$row->hodnota)) . "<br/>\n";
+    echo implode("\t",array($row->name,$row->idef,$row->type,$row->hodnota)) . "<br/>\n";
   }
 }
 	

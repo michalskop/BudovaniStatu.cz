@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Minimal BubbleTree Demo</title>
+	<script type="text/javascript" src="../../lib/jquery-1.5.2.min.js"></script>
+	<script type="text/javascript" src="../../lib/jquery.history.js"></script>
+	<script type="text/javascript" src="../../lib/raphael.js"></script>
+	<script type="text/javascript" src="../../lib/vis4.js"></script>
+	<script type="text/javascript" src="../../lib/Tween.js"></script>
+	<script type="text/javascript" src="../../build/bubbletree.js"></script>
+	<script type="text/javascript" src="https://raw.github.com/okfn/openspendingjs/master/lib/aggregator.js"></script>	
+	<link rel="stylesheet" type="text/css" href="../../build/bubbletree.css" />
+	<script type="text/javascript" src="../../styles/cofog.js"></script>
+	
+	
+	<script type="text/javascript">
+       
+		$(function() {
+
+			
+			var data = {
+				label: 'Total',
+				amount: 100,
+				children: [
+					{ label: 'First child', amount: 30 },
+					{ label: 'Second child', amount: 40 },
+					{ label: 'Third child', amount: 30, color: '#ff3300' }
+				]
+			};
+			
+			new BubbleTree({
+				data: data,
+				container: '.bubbletree'
+			});
+			
+		});
+                                        
+	</script>
+</head>
+<body>
+	<div class="bubbletree-wrapper">
+		<div class="bubbletree"></div>
+	</div>
+</body>
+</html>
