@@ -17,7 +17,7 @@ $(function() {
   //set slider
   $( "#db-slider" ).slider({value:50});
   //set income field
-  $("#db-income-field-text").val(slider2value($( "#db-slider" ).slider("option","value"),min_income,max_income));
+  $("#db-income-field-text").val(slider2value($( "#db-slider" ).slider("option","value"),min_income,max_income).toFixed(0));
   //recalculate
   recalculate();
   
@@ -26,7 +26,7 @@ $(function() {
 $(function() {
   //on slider change
   $("#db-slider").slider({
-    change: function(event,ui) {$("#db-income-field-text").val((slider2value($( "#db-slider" ).slider("option","value"),min_income,max_income)));
+    change: function(event,ui) {$("#db-income-field-text").val((slider2value($( "#db-slider" ).slider("option","value"),min_income,max_income)).toFixed(0));
     recalculate();
     }
   });
@@ -56,15 +56,32 @@ function recalculate() {
   var income = $('#db-income-field-text').val();
   var tax = income2tax(income);
   //set taxes
-  $("#db-tax-values-year-value").html(tax);
-  $("#db-tax-values-month-value").html(tax/12);
-  $("#db-tax-values-day-value").html(tax/365);
+  taxYear = parseInt(tax.toFixed(0)).toLocaleString();
+  taxMonth = parseInt((tax/12).toFixed(0)).toLocaleString();
+  taxDay = parseInt((tax/365).toFixed(0)).toLocaleString();
+  $("#db-tax-values-year-value").html(taxYear + ' Kč');
+  $("#db-tax-values-month-value").html(taxMonth + ' Kč');
+  $("#db-tax-values-day-value").html(taxDay + ' Kč');
   
   $.each($(".db-chapter"),function(index,value) {
     coef = $(this).children("input").val() / $("input:radio[name=db-frequency]:checked").val();
-    
-    $(this).children(".db-chapter-value").html(coef*tax);
+    num = coef*tax;
+    if (num > 10) numHtml = parseInt(num.toFixed(0)).toLocaleString() + ' Kč';
+    else numHtml = parseFloat(num.toFixed(2)).toLocaleString() + ' Kč';
+    $(this).children(".db-chapter-value").html(numHtml);
   });
 }
-
-
+/**
+* checks if input is a number
+* http://www.java2s.com/Code/JavaScript/Form-Control/AllowingOnlyNumbersintoaTextBox.htm
+*/
+function checkIt(evt) {
+    evt = (evt) ? evt : window.event
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        status = "This field accepts numbers only."
+        return false
+    }
+    status = ""
+    return true
+}

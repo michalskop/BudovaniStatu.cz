@@ -1,0 +1,102 @@
+<!doctype html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script src="./db.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+<link rel="stylesheet" href="./db.css" type="text/css" media="all" />
+</head>
+<body>
+<div id='db-part-1'>
+  <div id='db-income'>
+    <div id='db-income-header'>
+    
+    </div>
+    <div id='db-income-field'>
+      <input type="text" id='db-income-field-text' onKeyPress="return checkIt(event)"></input>
+    </div>
+  </div>
+  <div id='db-slider'>
+  
+  </div>
+  <div id='db-tax'>
+    <div id='db-tax-header'>
+    </div>
+    <div id='db-tax-values'>
+      <div id='db-tax-values-year'>
+        <div id='db-tax-values-year-value'></div>
+        <div id='db-tax-values-year-text'>ročně</div>
+        <div id='db-tax-values-month-value'></div>
+        <div id='db-tax-values-month-text'>měsíčně</div>
+        <div id='db-tax-values-day-value'></div>
+        <div id='db-tax-values-day-text'>denně</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div id='db-part-2'>
+
+<form>
+<input type='radio' name='db-frequency' id='db-frequency' value='1' >Ročně</input>
+<input type='radio' name='db-frequency' id='db-frequency' value='12'>Měsíčně</input>
+<input type='radio' name='db-frequency' id='db-frequency' value='365' CHECKED='true'>Denně</input>
+</form>
+
+<table class='db-table db-table-level-1'><tr>
+<td><span class='db-chapter level-1' id='db-chapter-313'><img src="../../bubbletree/styles/icons/old-age.svg"/><input type='hidden' value='0.372306'></input><div class='db-chapter-value'></div><div>Ministerstvo práce a sociálních věcí</div></span></td>
+<td><span class='db-chapter level-1' id='db-chapter-398'><img src="../../bubbletree/styles/icons/money.svg"/><input type='hidden' value='0.102894'></input><div class='db-chapter-value'></div><div>Všeobecná pokladní správa</div></span></td>
+<td><span class='db-chapter level-1' id='db-chapter-333'><img src="../../bubbletree/styles/icons/education.svg"/><input type='hidden' value='0.097126'></input><div class='db-chapter-value'></div><div>Ministerstvo školství, mládeže a tělovýchovy</div></span></td>
+<td><div class='db-chapter level-1' id='db-chapter-506'><img src="../../bubbletree/styles/icons/car.svg"/><input type='hidden' value='0.072695'></input><div class='db-chapter-value'></div><div>Státní fond dopravní infrastruktury a Ministerstvo dopravy</div></div></td>
+</tr></table>
+<table class='db-table db-table-level-2'><tr>
+<td><div class='db-chapter' id='db-chapter-314'><img src="../../bubbletree/styles/icons/police2.svg"/><input type='hidden' value='0.046477'></input><div class='db-chapter-value'></div><div>Ministerstvo vnitra</div></div></td>
+<td><div class='db-chapter' id='db-chapter-329'><img src="../../bubbletree/styles/icons/farms.svg"/><input type='hidden' value='0.041314'></input><div class='db-chapter-value'></div><div>Ministerstvo zemědělství</div></div></td>
+<td><div class='db-chapter' id='db-chapter-307'><img src="../../bubbletree/styles/icons/military.svg"/><input type='hidden' value='0.039740'></input><div class='db-chapter-value'></div><div>Ministerstvo obrany</div></div></td>
+<td><div class='db-chapter' id='db-chapter-396'><img src="../../bubbletree/styles/icons/public-debt.svg"/><input type='hidden' value='0.038096'></input><div class='db-chapter-value'></div><div>Státní dluh</div></div></td>
+<td><div class='db-chapter' id='db-chapter-511'><img src="../../bubbletree/styles/icons/farms.svg"/><input type='hidden' value='0.029950'></input><div class='db-chapter-value'></div><div>Státní zemědělský intervenční fond</div></div></td>
+<td><div class='db-chapter' id='db-chapter-317'><img src="../../bubbletree/styles/icons/our-streets.svg"/><input type='hidden' value='0.027203'></input><div class='db-chapter-value'></div><div>Ministerstvo pro místní rozvoj</div></div></td>
+<td><div class='db-chapter' id='db-chapter-336'><img src="../../bubbletree/styles/icons/courts.svg"/><input type='hidden' value='0.016310'></input><div class='db-chapter-value'></div><div>Ministerstvo spravedlnosti</div></div></td>
+<td><div class='db-chapter' id='db-chapter-322'><img src="../../bubbletree/styles/icons/manufactoring-construction.svg"/><input type='hidden' value='0.013312'></input><div class='db-chapter-value'></div><div>Ministerstvo průmyslu a obchodu</div></div></td>
+</tr></table>
+<td><div class='db-chapter' id='db-chapter-312'><input type='hidden' value='0.013063'></input><div class='db-chapter-value'></div><div>Ministerstvo financí</div></div></td>
+<td><div class='db-chapter' id='db-chapter-315'><input type='hidden' value='0.011598'></input><div class='db-chapter-value'></div><div>Ministerstvo životního prostředí</div></div></td>
+<td><div class='db-chapter' id='db-chapter-335'><input type='hidden' value='0.007364'></input><div class='db-chapter-value'></div><div>Ministerstvo zdravotnictví</div></div></td>
+<td><div class='db-chapter' id='db-chapter-334'><input type='hidden' value='0.006023'></input><div class='db-chapter-value'></div><div>Ministerstvo kultury</div></div></td>
+<td><div class='db-chapter' id='db-chapter-306'><input type='hidden' value='0.004973'></input><div class='db-chapter-value'></div><div>Ministerstvo zahraničních věcí</div></div></td>
+<td><div class='db-chapter' id='db-chapter-361'><input type='hidden' value='0.003929'></input><div class='db-chapter-value'></div><div>Akademie věd České republiky</div></div></td>
+<td><div class='db-chapter' id='db-chapter-502'><input type='hidden' value='0.003085'></input><div class='db-chapter-value'></div><div>Státní fond životního prostředí ČR</div></div></td>
+
+<div class='db-chapter' id='db-chapter-346'><input type='hidden' value='0.002608'></input><div class='db-chapter-value'></div><div>Český úřad zeměměřický a katastrální</div></div>
+<div class='db-chapter' id='db-chapter-374'><input type='hidden' value='0.001679'></input><div class='db-chapter-value'></div><div>Správa státních hmotných rezerv</div></div>
+<div class='db-chapter' id='db-chapter-507'><input type='hidden' value='0.001625'></input><div class='db-chapter-value'></div><div>Státní fond rozvoje bydlení</div></div>
+<div class='db-chapter' id='db-chapter-321'><input type='hidden' value='0.001554'></input><div class='db-chapter-value'></div><div>Grantová agentura České republiky</div></div>
+<div class='db-chapter' id='db-chapter-345'><input type='hidden' value='0.001270'></input><div class='db-chapter-value'></div><div>Český statistický úřad</div></div>
+<div class='db-chapter' id='db-chapter-305'><input type='hidden' value='0.000921'></input><div class='db-chapter-value'></div><div>Bezpečnostní informační služba</div></div>
+<div class='db-chapter' id='db-chapter-302'><input type='hidden' value='0.000876'></input><div class='db-chapter-value'></div><div>Poslanecká sněmovna Parlamentu</div>
+<div class='db-chapter' id='db-chapter-304'><input type='hidden' value='0.000534'></input><div class='db-chapter-value'></div><div>Úřad vlády České republiky</div>
+<div class='db-chapter' id='db-chapter-328'><input type='hidden' value='0.000439'></input><div class='db-chapter-value'></div><div>Český telekomunikační úřad</div>
+<div class='db-chapter' id='db-chapter-381'><input type='hidden' value='0.000424'></input><div class='db-chapter-value'></div><div>Nejvyšší kontrolní úřad</div>
+<div class='db-chapter' id='db-chapter-303'><input type='hidden' value='0.000390'></input><div class='db-chapter-value'></div><div>Senát Parlamentu</div>
+<div class='db-chapter' id='db-chapter-301'><input type='hidden' value='0.000296'></input><div class='db-chapter-value'></div><div>Kancelář prezidenta republiky</div>
+<div class='db-chapter' id='db-chapter-375'><input type='hidden' value='0.000275'></input><div class='db-chapter-value'></div><div>Státní úřad pro jadernou bezpečnost</div>
+<div class='db-chapter' id='db-chapter-505'><input type='hidden' value='0.000244'></input><div class='db-chapter-value'></div><div>Státní fond ČR pro podporu a rozvoj české kinematografie</div>
+<div class='db-chapter' id='db-chapter-397'><input type='hidden' value='0.000205'></input><div class='db-chapter-value'></div><div>Operace státních finančních aktiv</div>
+<div class='db-chapter' id='db-chapter-308'><input type='hidden' value='0.000203'></input><div class='db-chapter-value'></div><div>Národní bezpečnostní úřad</div>
+<div class='db-chapter' id='db-chapter-344'><input type='hidden' value='0.000133'></input><div class='db-chapter-value'></div><div>Úřad průmyslového vlastnictví</div>
+<div class='db-chapter' id='db-chapter-348'><input type='hidden' value='0.000132'></input><div class='db-chapter-value'></div><div>Český báňský úřad</div>
+<div class='db-chapter' id='db-chapter-355'><input type='hidden' value='0.000121'></input><div class='db-chapter-value'></div><div>Ústav pro studium totalitních režimů</div>
+<div class='db-chapter' id='db-chapter-358'><input type='hidden' value='0.000121'></input><div class='db-chapter-value'></div><div>Ústavní soud</div>
+<div class='db-chapter' id='db-chapter-353'><input type='hidden' value='0.000104'></input><div class='db-chapter-value'></div><div>Úřad pro ochranu hospodářské soutěže</div>
+<div class='db-chapter' id='db-chapter-349'><input type='hidden' value='0.000087'></input><div class='db-chapter-value'></div><div>Energetický regulační úřad</div>
+<div class='db-chapter' id='db-chapter-343'><input type='hidden' value='0.000076'></input><div class='db-chapter-value'></div><div>Úřad pro ochranu osobních údajů</div>
+<div class='db-chapter' id='db-chapter-309'><input type='hidden' value='0.000062'></input><div class='db-chapter-value'></div><div>Kancelář Veřejného ochránce práv</div>
+<div class='db-chapter' id='db-chapter-372'><input type='hidden' value='0.000045'></input><div class='db-chapter-value'></div><div>Rada pro rozhlasové a televizní vysílání</div>
+<div class='db-chapter' id='db-chapter-504'><input type='hidden' value='0.000023'></input><div class='db-chapter-value'></div><div>Státní fond kultury ČR</div>
+<div class='db-chapter' id='db-chapter-377'><input type='hidden' value='0.000011'></input><div class='db-chapter-value'></div><div>Technologická agentura České republiky</div>
+
+ 
+</div>
+
+</body></html>

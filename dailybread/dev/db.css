@@ -1,0 +1,83 @@
+.db-chapter {
+  display:inline;
+}
+
+.level-1 {
+  font-size:1em;
+}
+
+.db-table {
+  text-align: center;
+  vertical-align: top;
+  border-collapse:collapse;
+}
+table,th,td
+{
+  border-top: 1px solid black;
+}
+td {
+  vertical-align:top;
+}
+.db-table-level-2 {
+  font-size:.65em;
+}
+
+.db-table-level-1 td {
+  width: 25%;
+}
+
+.db-table-level-2 td {
+  width: 12.5%;
+}
+
+#db-chapter-313 img {
+  width: 217px;
+  height: 217px;
+}
+
+#db-chapter-398 img {
+  width: 114px;
+  height: 114px;
+}
+#db-chapter-333 img {
+  width: 111px;
+  height: 111px;
+}
+#db-chapter-506 img {
+  width: 88px;
+  height: 88px;
+}
+
+#db-chapter-314 img {
+  width: 76px;
+  height: 76px;
+}
+#db-chapter-329 img {
+  width: 72px;
+  height: 72px;
+}
+#db-chapter-307 img {
+  width: 71px;
+  height: 71px;
+}
+#db-chapter-396 img {
+  width: 69px;
+  height: 69px;
+}
+#db-chapter-511 img {
+  width: 62px;
+  height: 62px;
+}
+#db-chapter-317 img {
+  width: 59px;
+  height: 59px;
+}
+#db-chapter-336 img {
+  width: 45px;
+  height: 45px;
+}
+#db-chapter-322 img {
+  width: 41px;
+  height: 41px;
+}
+
