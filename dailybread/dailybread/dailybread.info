@@ -1,0 +1,4 @@
+;$Id$
+name = "BS Daily Bread"
+description = "Daily Bread application for budovanistatu.cz"
+core = 7.x

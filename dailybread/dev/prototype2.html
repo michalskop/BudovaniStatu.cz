@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="./db.css" type="text/css" media="all" />
 </head>
 <body>
-<div id='db-part-1'>
+<div id='db-part-1'>db
   <div id='db-income'>
     <div id='db-income-header'>
     
@@ -24,14 +24,12 @@
     <div id='db-tax-header'>
     </div>
     <div id='db-tax-values'>
-      <div id='db-tax-values-year'>
         <div id='db-tax-values-year-value'></div>
         <div id='db-tax-values-year-text'>ročně</div>
         <div id='db-tax-values-month-value'></div>
         <div id='db-tax-values-month-text'>měsíčně</div>
         <div id='db-tax-values-day-value'></div>
         <div id='db-tax-values-day-text'>denně</div>
-      </div>
     </div>
   </div>
 
@@ -39,13 +37,37 @@
 <div id='db-part-2'>
 
 <form>
-<input type='radio' name='db-frequency' id='db-frequency' value='1' >Ročně</input>
-<input type='radio' name='db-frequency' id='db-frequency' value='12'>Měsíčně</input>
-<input type='radio' name='db-frequency' id='db-frequency' value='365' CHECKED='true'>Denně</input>
+<div id="db-frequency-radio">
+<input type='radio' name='db-frequency' id='db-frequency1' value='1' /><label for="db-frequency1">Ročně</label>
+<input type='radio' name='db-frequency' id='db-frequency12' value='12' /><label for="db-frequency12">Měsíčně</label>
+<input type='radio' name='db-frequency' id='db-frequency365' value='365' CHECKED='true' /><label for="db-frequency365">Denně</label>
+</div>
+</form>
+<form>
+	<div id="radio">
+		<input type="radio" id="radio1" name="radio" /><label for="radio1">Choice 1</label>
+
+		<input type="radio" id="radio2" name="radio" checked="checked" /><label for="radio2">Choice 2</label>
+		<input type="radio" id="radio3" name="radio" /><label for="radio3">Choice 3</label>
+	</div>
 </form>
 
+<span id="db-tax-info" class="ui-icon ui-icon-info"></span>
+
+
+<div id="dialog" title="Basic dialog">
+	This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.
+</div>
+
+
 <table class='db-table db-table-level-1'><tr>
-<td><span class='db-chapter level-1' id='db-chapter-313'><img src="../../bubbletree/styles/icons/old-age.svg"/><input type='hidden' value='0.372306'></input><div class='db-chapter-value'></div><div>Ministerstvo práce a sociálních věcí</div></span></td>
+<td>
+  <span class='db-chapter level-1' id='db-chapter-313'>
+  <img src="../../bubbletree/styles/icons/old-age.svg"/>
+  <input type='hidden' value='0.372306'></input>
+  <div class='db-chapter-value'></div>
+  <div>Ministerstvo práce a sociálních věcí</div></span>
+</td>
 <td><span class='db-chapter level-1' id='db-chapter-398'><img src="../../bubbletree/styles/icons/money.svg"/><input type='hidden' value='0.102894'></input><div class='db-chapter-value'></div><div>Všeobecná pokladní správa</div></span></td>
 <td><span class='db-chapter level-1' id='db-chapter-333'><img src="../../bubbletree/styles/icons/education.svg"/><input type='hidden' value='0.097126'></input><div class='db-chapter-value'></div><div>Ministerstvo školství, mládeže a tělovýchovy</div></span></td>
 <td><div class='db-chapter level-1' id='db-chapter-506'><img src="../../bubbletree/styles/icons/car.svg"/><input type='hidden' value='0.072695'></input><div class='db-chapter-value'></div><div>Státní fond dopravní infrastruktury a Ministerstvo dopravy</div></div></td>

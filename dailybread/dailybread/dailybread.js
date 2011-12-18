@@ -15,20 +15,20 @@ function income2tax(income) {
 
 //load radio styling
 $(function() {
-  $("#db-frequency-radio").buttonset();
+  $(".db-time-period").buttonset();
 });
 
 //tax info dialog
 $(function() {
-  $( "#dialog" ).dialog({autoOpen:false,modal:true});
+  $( "#db-tax-info-dialog" ).dialog({autoOpen:false,modal:true});
   $("#db-tax-info").click(function() {
-    $( "#dialog" ).dialog('open');
+    $( "#db-tax-info-dialog" ).dialog('open');
   });
 });
 
 $(function() {
   //set slider
-  $( "#db-slider" ).slider({value:50});
+  $( "#db-slider" ).slider({value:value2slider($("#db-income-field-text").val(),min_income,max_income)});
   //set income field
   $("#db-income-field-text").val(slider2value($( "#db-slider" ).slider("option","value"),min_income,max_income).toFixed(0));
   //recalculate
@@ -41,7 +41,7 @@ $(function() {
   $("#db-slider").slider({
     change: function(event,ui) {$("#db-income-field-text").val((slider2value($( "#db-slider" ).slider("option","value"),min_income,max_income)).toFixed(0));
     recalculate();
-    },
+    }
   });
   //on income change
   $("#db-income-field-text").change(function() {
@@ -76,19 +76,19 @@ function recalculate() {
   $("#db-tax-values-month-value").html(taxMonth + ' Kč');
   $("#db-tax-values-day-value").html(taxDay + ' Kč');
   
-  $.each($(".db-chapter"),function(index,value) {
-    coef = $(this).children("input").val() / $("input:radio[name=db-frequency]:checked").val();
+  $.each($(".db-table-cell-list"),function(index,value) {
+    coef = $(this).find("input").val() / $("input:radio[name=db-frequency]:checked").val();
     num = coef*tax;
     if (num > 10) numHtml = parseInt(num.toFixed(0)).toLocaleString() + ' Kč';
     else numHtml = parseFloat(num.toFixed(2)).toLocaleString() + ' Kč';
-    $(this).children(".db-chapter-value").html(numHtml);
+    $(this).children(".db-table-cell-value").html(numHtml);
   });
   
   //effect
-  $(".db-chapter-value").animate({
+  $(".db-recalculate-effect").animate({
     color: '#8ff'
   },500);
-  $(".db-chapter-value").animate({
+  $(".db-recalculate-effect").animate({
     color: '#000'
   },500);
 }

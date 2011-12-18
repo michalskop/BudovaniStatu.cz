@@ -1,0 +1,91 @@
+#db-income-field-text, #db-slider-wrapper {
+  float:left;
+  margin-top:1em;
+}
+#db-slider-wrapper {
+  width:65%;
+  margin-top:1.25em;
+  padding:0 1em;
+}
+.db-tax {
+  float:right;
+}
+.db-table .item-list ul
+{
+list-style-type: none;
+padding: 0px;
+margin: 0px;
+}
+
+.db-time-period {
+  clear:both;
+  border-top:1px solid gray;
+}
+
+#db-tax-info, #db-tax-info-text{
+  float:left;
+}
+
+
+
+
+/*.db-chapter {
+  display:inline;
+}*/
+
+.level-1 {
+  font-size:1em;
+}
+
+.db-table {
+  text-align: center;
+  border-collapse:collapse;
+  line-height: .8em;
+}
+.db-table .even{
+  vertical-align: top;
+}
+.db-table .odd{
+  vertical-align: bottom;
+}
+
+.db-table tr .even, .db-table tr .odd{
+  border-bottom: 0 solid red;
+}
+
+tr.even, tr.odd {
+  border-bottom: 0 solid red;
+  background-color: #FFF;
+  padding: 0em 0em;
+}
+
+/*table,th,td
+{
+  border-top: 1px solid black;
+}*/
+
+.db-table-level-1 {
+  font-size:.9em;
+}
+
+.db-table-level-2 {
+  font-size:.65em;
+}
+
+.db-table-level-3 {
+  font-size:.6em;
+}
+
+.db-table-level-1 td {
+  width: 25%;
+}
+
+.db-table-level-2 td {
+  width: 12.5%;
+}
+
+.db-table-level-2 td {
+  width: 6.25%;
+}
+
+

@@ -1,0 +1,390 @@
+<?php
+
+/**
+* Drupal core hooks
+*/
+
+
+/**
+* Implementation of hook_menu().
+*/
+function dailybread_menu() {
+  $items['bread'] = array(
+    'title' => 'Kam jdou moje daně',
+    'page callback' => 'dailybread_create_app',
+    'file' => 'dailybread_config.inc',
+    'access callback' => TRUE,
+    'menu_name' => 'main-menu',
+  );
+  
+  $items['bread/%'] = array(
+    'title' => 'My Daily Bread',
+    'page callback' => 'dailybread_create_app',
+    'file' => 'dailybread_config.inc',
+    'access callback' => TRUE,
+    'menu_name' => 'main-menu',
+  );
+  return $items;
+}
+/**
+*
+*/
+function dailybread_create_app() {
+  //include js + css
+  drupal_add_js("https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js",'external');
+  drupal_add_js("https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js",'external');
+  drupal_add_js(drupal_get_path('module', 'dailybread') . '/' . 'dailybread.js');
+  drupal_add_html_head_link(array('href' => 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css', 'rel' => 'stylesheet', 'type' => 'text/css', 'media' => 'all'));
+  //drupal_add_html_head_link(array('href' => '../' . drupal_get_path('module', 'dailybread') . '/' . 'dailybread.css', 'rel' => 'stylesheet', 'type' => 'text/css', 'media' => 'all'),TRUE);
+  //drupal_add_css('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css');
+  drupal_add_css(drupal_get_path('module', 'dailybread') . '/dailybread.css');
+
+  //include data for the app
+  $config = _get_config();
+  $file = drupal_get_path('module', 'dailybread') . '/' . $config['data'];
+  if (is_readable($file))
+    include ($file);
+  
+  //sort data
+  $data = _multiSortArray($db_data,array('value'=>false));
+  
+  //calculate rates
+  $sum_rate = 0;
+  foreach ($data as $key=>$row) {
+    $data[$key]['rate'] = round($row['value']/$data[0]['value'],6);
+    $sum_rate += $data[$key]['rate'];
+  }
+    
+  //create upper part
+  $html_upper = _create_upper_part($data,$config);
+  
+  //create radios
+  $html_radios = _create_radios();
+  
+  //create table
+  $html_table = _create_table($data,$config,$sum_rate);
+  return $html_upper . $html_radios . $html_table;//print_r($table,1);
+}
+
+/**
+* create radios
+*/
+function _create_radios() {
+  $options = array( '1' => 'Ročně', '12' => 'Měsíčně', '365' => 'Denně');
+  $radios = '';
+  foreach ($options as $key => $option) {
+    if ($key == '12') $checked = true;
+    else $checked = false;
+    $input = array(
+		'element' => array(
+		  '#tag' => 'input',
+		  '#attributes' => array('value' => $key, 'id' => 'db-frequency'.$key, 'name' => 'db-frequency', 'type' => 'radio'),
+		),
+    );
+    if ($checked) $input['element']['#attributes']['checked'] = 'checked';
+    $label = array(
+      'element' => array(
+        '#tag' => 'label',
+        '#value' => $option,
+        '#attributes' => array('for' => 'db-frequency'.$key),
+      ),
+    );
+    $radios .= theme('html_tag', $input) . theme('html_tag', $label);  
+  }
+  
+  $div_radio = array(
+    'element' => array(
+      '#tag' => 'div',
+      '#value'=> $radios,
+      '#attributes' => array('id' => 'db-frequency-radio'),
+    ),
+  );
+
+  $text_radio = array(
+    'element' => array(
+      '#tag' => 'span',
+      '#value'=> 'Zobrazit hodnoty: ',
+      '#attributes' => array('id' => 'db-frequency-texts'),
+    ),
+  );
+  
+  $radio = array(
+    'element' => array(
+      '#tag' => 'form',
+      '#value' => theme('html_tag', $text_radio) . theme('html_tag', $div_radio),
+      '#attributes' => array('class' => array('db-time-period')),
+    ),
+  );
+  
+  return theme('html_tag',$radio);
+}
+
+
+/**
+* create upper part for dailybread
+*/
+function _create_upper_part($data,$config) {
+  //left part
+  //income field 
+  $input = array(
+    'element' => array(
+      '#tag' => 'input',
+      '#attributes' => array('value' => (isset($_GET['income'])?$_GET['income']:0), 'id' => 'db-income-field-text', 'onKeyPress' => 'return checkIt(event)', 'size' => '7', 'class' => array('db-recalculate-effect')),
+    ),
+  );
+  //header
+  $header = array(
+    'element' => array(
+       '#tag' => 'div',
+       '#value' => 'Měsíční (hrubý) plat Kč:',
+       '#attributes' => array('class' => array('db-income-header')),
+     ),
+   );
+   //header and input
+   $hi = array(
+    'element' => array(
+       '#tag' => 'div',
+       '#value' => theme('html_tag',$header) . theme('html_tag',$input),
+       '#attributes' => array('class' => array('db-income-left')),
+     ),
+   );
+   
+   //slider
+   $slider = array(
+    'element' => array(
+       '#tag' => 'div',
+       '#value' => '',
+       '#attributes' => array('id' => 'db-slider'),
+     ),
+   );
+   $slider_wrapper = array(
+    'element' => array(
+       '#tag' => 'div',
+       '#value' => theme('html_tag',$slider),
+       '#attributes' => array('id' => 'db-slider-wrapper'),
+     ),
+   );
+
+  $income = array(
+    'element' => array(
+       '#tag' => 'div',
+       '#value' =>  theme('html_tag',$header) . theme('html_tag',$input) . theme('html_tag',$slider_wrapper),
+       '#attributes' => array('class' => array('db-income'))
+     ),
+  );
+   
+   
+  //right part
+  //divs tax
+  $tax00 = array(
+    'element' => array(
+       '#tag' => 'span',
+       '#value' => '',
+       '#attributes' => array('id' => 'db-tax-values-year-value', 'class' => array('db-tax-values-value','db-recalculate-effect')),
+     ),
+   ); 
+   $tax01 = array(
+    'element' => array(
+       '#tag' => 'span',
+       '#value' => 'ročně',
+       '#attributes' => array('id' => 'db-tax-values-year-text'),
+     ),
+   );
+  $tax10 = array(
+    'element' => array(
+       '#tag' => 'span',
+       '#value' => '',
+       '#attributes' => array('id' => 'db-tax-values-month-value', 'class' => array('db-tax-values-value','db-recalculate-effect')),
+     ),
+   ); 
+   $tax11 = array(
+    'element' => array(
+       '#tag' => 'span',
+       '#value' => 'měsíčně',
+       '#attributes' => array('id' => 'db-tax-values-month-text'),
+     ),
+   );
+  $tax20 = array(
+    'element' => array(
+       '#tag' => 'span',
+       '#value' => '',
+       '#attributes' => array('id' => 'db-tax-values-day-value', 'class' => array('db-tax-values-value','db-recalculate-effect')),
+     ),
+   ); 
+   $tax21 = array(
+    'element' => array(
+       '#tag' => 'span',
+       '#value' => 'denně',
+       '#attributes' => array('id' => 'db-tax-values-day-text'),
+     ),
+   );
+   
+  $tax0 = array(
+    'element' => array(
+       '#tag' => 'div',
+       '#value' => theme('html_tag',$tax00) . theme('html_tag',$tax01),
+       '#attributes' => array('id' => 'db-tax-values'),
+     ),
+   );
+  $tax1 = array(
+    'element' => array(
+       '#tag' => 'div',
+       '#value' => theme('html_tag',$tax10) . theme('html_tag',$tax11),
+       '#attributes' => array('id' => 'db-tax-values'),
+     ),
+   );
+  $tax2 = array(
+    'element' => array(
+       '#tag' => 'div',
+       '#value' => theme('html_tag',$tax20) . theme('html_tag',$tax21),
+       '#attributes' => array('id' => 'db-tax-values'),
+     ),
+   );
+  $rinfo = array(
+    'element' => array(
+      '#tag' => 'span',
+      '#value' => '',
+      '#attributes' => array('id' => 'db-tax-info', 'class' => array('ui-icon','ui-icon-info')),
+    ),
+  );
+  $rinfo_text = array(
+    'element' => array(
+      '#tag' => 'span',
+      '#value' => 'Vaše daně: ',
+      '#attributes' => array('id' => 'db-tax-info-text'),
+    ),
+  );
+  $rheader = array(
+    'element' => array(
+       '#tag' => 'div',
+       '#value' => theme('html_tag',$rinfo_text) . theme('html_tag',$rinfo),
+       '#attributes' => array('class' => array('db-tax-header')),
+     ),
+  );
+  
+  $info_dialog = array(
+    'element' => array(
+      '#tag' => 'div',
+      '#value' => 'This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the "x" icon.',
+      '#attributes' => array('id' => 'db-tax-info-dialog', 'title' => 'Vaše daně'),
+    ),
+  );
+  
+  $taxes = array(
+    'element' => array(
+      '#tag' => 'div',
+      '#value' => theme('html_tag',$tax0) .theme('html_tag',$tax1) .theme('html_tag',$tax2),
+      '#attributes' => array('class' => array('db-tax-values')),
+    ),
+  );
+  
+  $right = array(
+    'element' => array(
+      '#tag' => 'div',
+      '#value' => theme('html_tag',$rheader) . theme('html_tag',$taxes),
+      '#attributes' => array('class' => array('db-tax')),
+    ),
+  );
+   
+
+  return theme('html_tag',$right).theme('html_tag',$income) . theme('html_tag',$info_dialog);
+      
+}
+
+/**
+* create table for dailybread
+*/
+function _create_table($data,$config,$sum_rate) {
+  //create table
+  $i = 0;
+  $j = 0;
+  $max_row = max($config['table_numbers']);
+  $rows = array();
+  //rows
+  foreach($config['table_numbers'] as $num){
+    $colspan = $max_row/$num;
+    $row1 = array();
+    $row2 = array();
+    //a (double) row
+    for ($k=$i; $k < $i+$num; $k++) {
+      //image
+      if ($config['max_image_size']*sqrt($data[$k]['rate']) > $config['min_image_size']) 
+        $size = $config['max_image_size']*sqrt($data[$k]['rate']);
+      else
+        $size = $config['min_image_size'];
+      $image_url = drupal_get_path('module', 'dailybread') . '/icons/' . ((($size == $config['min_image_size']) or $data[$k]['icon'] == '') ? 'none' : $data[$k]['icon']) . '.svg';
+      $image = array(
+        'path' => $image_url,
+        'alt' => $data[$k]['name'],
+        'title' => $data[$k]['name'],
+        'attributes' => array('width' => $size.'px')
+      );
+      $row1[] = array('data' => theme('image',$image), 'colspan' => $colspan, 'class' => array('db-table-cell-image'));
+      
+      //input
+      $input = array(
+        'element' => array(
+          '#tag' => 'input',
+          '#attributes' => array('value' => $data[$k]['rate']/$sum_rate, 'type' => 'hidden')
+        ),
+      );
+      
+      //text
+      $text = array(
+        'items' => array(
+          //input
+          array(
+            'data' => theme('html_tag',$input),
+            'class' => array('db-table-cell-input')
+          ),
+          //place for money values
+          array('data' => '', 'class' => array('db-table-cell-value','db-recalculate-effect')),
+          //desctiption
+          array('data' => $data[$k]['name'], 'class' => array('db-table-cell-description')),
+        ),
+        'type' => 'ul',
+        'attributes' => array('class' => array('db-table-cell-list')),
+      );
+      
+      $row2[] = array('data' => theme('item_list',$text), 'colspan' => $colspan);
+
+      //stop if no more data
+      if (($k+1) == count($data)) $k = $i+$num;
+    }
+    //add rows into table
+    $i = $k;
+    $rows[] = $row1;
+    $rows[] = array('data' => $row2, 'class' => array('db-table-level','db-table-level-'.$j));
+    $j++;
+  }
+  //create table
+  $table = array(
+    'rows' => $rows,
+    'attributes' => array('class' => array('db-table')),
+  );
+  return theme('table',$table);//print_r($table,1);
+}
+
+/**
+* multisort
+* http://richard.gluga.com/2010/08/awesome-php-53-array-multi-sort.html
+*/
+function _multiSortArray($data, $field) {
+        if (!is_array($field)) {    //if the field is given as a string, assume ascending
+            $field = array($field=>true);
+        }
+
+        usort($data, function($a, $b) use($field) {
+            $retval = 0;
+            foreach ($field as $fieldname=>$asc) {
+                if ($retval == 0) {
+                    $retval = strnatcmp($a[$fieldname], $b[$fieldname]);
+                    if(!$asc) $retval *= -1;    //if
+                }
+            }
+            return $retval;
+        });
+        return $data;
+    }
+
+?>
