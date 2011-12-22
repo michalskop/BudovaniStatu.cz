@@ -121,6 +121,7 @@ var BubbleTree = function(config, onHover, onUnHover) {
 					'label': 'Ostatní',
 					'urlLabel':'more',
 					'name': 'more',
+					'idef': root.idef,
 					'amount': moveAmount,
 					'children': move,
 					'breakdown': breakdown
@@ -190,7 +191,7 @@ var BubbleTree = function(config, onHover, onUnHover) {
 			//if (diacritics[node.label] == undefined) diacritics[node.label] = escape(node.label);
 			//urlTokenSource = diacritics[node.label];
 			//urlTokenSource = encodeURIComponent(node.label);
-			urlTokenSource = escape(node.label);
+			urlTokenSource = node.label;//escape(node.label);
 		} else if (node.token !== undefined && node.token !== "") {
 			urlTokenSource = node.token;
 		} else {
@@ -2111,26 +2112,78 @@ BubbleTree.Bubbles.Icon = function(node, bubblechart, origin, radius, angle, col
 */
 function my_table (node) {
   //table
-  html = '<table><thead><tr><td>' + node.label + '</td><td>' + node.amount + '</td><tr></thead><tbody>';
+  //ajax:
+  getHistoricalValues(node.idef);
+  
+ /* html = '<table class="bs-table"><thead><tr id="'+ node.idef + '"><td>' + node.label + '</td><td>' + node.amount + '</td><tr></thead><tbody>';
   node.children.sort(sort_by('amount', true, parseInt));
+  var zebra = 'odd';
 
   $.each(node.children,function(index,value) {
     //alert (my_dump(value));
-    html += "<tr class='table-row' id='"+ value.idef +"'><td>"+value.label+"</td><td>"+value.amount+"</td><td id='cell-"+ value.idef +"'></td></tr>";
+    html += "<tr class='table-row "+zebra+"' id='"+ value.idef +"'><td>"+value.label+"</td><td>"+value.amount+"</td><td id='cell-"+ value.idef +"'></td></tr>";
+    //zebra
+    if (zebra == 'odd') {(zebra = 'even');}
+    else {(zebra = 'odd');}
   });
+
   html += "</tbody></table>";
-  $("#bs-table").html(html);
+  $("#bs-table").html(html);*/
   
   //breadcrumbs
-  var mnode = node;
+  mnode = node;
   var breadcrumbs = '';
-  var ok = true;
+  breads = [];
+  breads_link = [];
+  breads_link[0] = '';
+  i = 0;
+  ok = true;
   while (ok) {
-    breadcrumbs = mnode.label + ' >> ' + breadcrumbs;
+    breads[i] = mnode.label;
+    for (k=0;k<=i;k++)
+      if (breads_link[k] == undefined) breads_link[k] = mnode.label
+      else breads_link[k] = mnode.label + '/' + breads_link[k];
     if (mnode.parent == undefined) ok = false;
     else mnode = mnode.parent;
+    i++;
   }
+  for (j = 0; j < i; j++)
+    //breadcrumbs = '<a href="#/~/' + breads_link[j] + '">' + breads[j] + '</a> >> ' + breadcrumbs;
+    breadcrumbs = breads[j] + ' >> ' + breadcrumbs;
   $("#bs-breadcrumbs").html(breadcrumbs.substr(0,breadcrumbs.length - 4));
+  
+}
+
+function getHistoricalValues(idef) {
+  
+  
+    var results = [];
+    var url  = 'generate_table.php?idef=' + idef;
+
+	//before ajax call
+	$("#bs-table-ajax-loader").html('<img src="ajax-loader.gif" alt="Wait" />');
+	$("#bs-table").html('');
+
+	/*if (request != undefined)
+		request.abort();*/
+
+
+    var request = $.ajax({
+        url: url,
+        type: 'GET',
+        beforeSend: function( xhr ) {
+			xhr.overrideMimeType( 'text/html; charset=utf-8' );
+		},
+        dataType: 'html',
+        success: function ( received_data ) {
+        	$("#bs-table-ajax-loader").html('');
+			$("#bs-table").html(received_data);
+        },
+        error: function ( err ) {
+        	$("#bs-table-ajax-loader").html('');
+			$("#bs-table").html('No data');
+        }
+    });
 }
 
 

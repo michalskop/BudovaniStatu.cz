@@ -6,7 +6,7 @@
 set_time_limit(0);
 
 //global $max_recursion_level;
-$max_recursion_level = 1000;
+$max_recursion_level = 0;
 //define server, dataset, etc.
 $connection = array(
 	'host' => 'http://cz.cecyf.megivps.pl/api/',
@@ -16,7 +16,9 @@ $connection = array(
 );
 //year
 $year = 2010;
-
+$data->label = 'Rozpočet';
+$data->urlLabel = 'rozpocet';
+$data->amount = 1279434643200;
 
 //first level
 $level = 'a';
@@ -31,11 +33,8 @@ if ($result->response == 'OK') {
   //recursion
   $data->children = recursion($result,$recursion_level);
 }
-$data->label = 'Rozpočet';
-$data->urlLabel = 'rozpocet';
-$data->amount = 1279434643200;
 
-$file = fopen('/home/michal/budovanistatu.cz/bubbletree/dev/dataz4.json',"w+");
+$file = fopen('/home/michal/budovanistatu.cz/bubbletree/dev/datab5.json',"w+");
 fwrite($file,json_encode($data));
 fclose($file);
 

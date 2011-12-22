@@ -11,7 +11,11 @@
 	<script type="text/javascript" src="../lib/Tween.js"></script>
 	<script type="text/javascript" src="../build/bubbletreem.js"></script>
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+	
 	<link rel="stylesheet" type="text/css" href="../build/bubbletree.css" />
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+	
 	<script type="text/javascript" src="../styles/cofog.js"></script>
 	
 	<script type="text/javascript" src="./trialdata.js"></script>
@@ -22,7 +26,7 @@
 	  		
 	
        $.ajax({
-		  url: 'http://localhost/michal/budovanistatu.cz/bubbletree/dev/dataz4.json',
+		  url: 'http://localhost/michal/budovanistatu.cz/bubbletree/dev/datab5.json',
 		  dataType: 'json',
 		  success: function (d) {
 		  		/*d.children = dd;
@@ -45,7 +49,15 @@
 
 	});
 	$(function() {
-  $(".table-row").click(function() {
+	
+	  $(function() {
+		$( "#tabs" ).tabs();
+	  });
+	  
+	  
+	
+	
+  /*$(".table-row").click(function() {
     var html = '';
     var url = '';
     for (year = 2006; year <= 2010; year++) {
@@ -62,8 +74,47 @@
 		});
 	}
 	$("#cell-"+$(this).attr('id')).html(html);
-  });
-});
+  });*/
+  
+  /*$(".table-row").click( function () {
+    var idef = $(this).attr('id');
+    var results = [];
+    var counter = 0;
+    var year;
+    var url  = 'get.php?url=';
+        url += 'http://cz.cecyf.megivps.pl/api/json/dataset/1/view/0/issue/';
+
+    var callback = function () {
+        if( counter !== 7 ) {
+            return;
+        }
+        $('#cell-'+idef).html( results.join('') );
+    };
+
+    for( year = 2004; year <= 2010; year++ ) {
+        (function ( y ) {
+            $.ajax({
+                url: url + encodeURI( y+'/a/'+idef+'/?fields=hodnota' ),
+                type: 'GET',
+                dataType: 'json',
+                success: function ( received_data ) {
+                    counter += 1;
+                    results[ y-2004 ] = received_data.data[0].hodnota + ',';
+                    callback();
+                },
+                error: function ( err ) {
+                    counter += 1;
+                    results[ y-2004 ] = 'No data,';
+                    callback();
+                }
+            });
+        })( year );
+    }
+	});*/
+	
+	
+  
+	});
 
 
 	function bubble(d) {	
@@ -78,10 +129,21 @@
 </head>
 <body>
 	<div id="bs-breadcrumbs">X</div>
-	<div class="bubbletree-wrapper" style="width:800px;height:800px">
-		<div class="bubbletree"></div>
+	<div id="tabs">
+	  <ul>
+	    <li><a href="#tabs-1">Graf</a></li>
+	    <li><a href="#tabs-2">Tabulka</a></li>
+	  </ul>
+	  <div id="tabs-1">
+			<div class="bubbletree-wrapper" style="width:800px;height:800px">
+				<div class="bubbletree"></div>
+			</div>
+	  </div>
+	  <div id="tabs-2">
+			<div id="bs-table-ajax-loader"></div>
+			<div id="bs-table"></div>
+	  </div>
 	</div>
-	<div id="bs-table"></div>
 	
 </body>
 </html>
