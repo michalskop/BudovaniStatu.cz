@@ -2111,9 +2111,13 @@ BubbleTree.Bubbles.Icon = function(node, bubblechart, origin, radius, angle, col
 *
 */
 function my_table (node) {
-  //table
+  //tables
   //ajax:
   getHistoricalValues(node.idef);
+  
+  //people
+  getPeople(node.idef);
+  
   
  /* html = '<table class="bs-table"><thead><tr id="'+ node.idef + '"><td>' + node.label + '</td><td>' + node.amount + '</td><tr></thead><tbody>';
   node.children.sort(sort_by('amount', true, parseInt));
@@ -2154,11 +2158,37 @@ function my_table (node) {
   
 }
 
+function getPeople(idef) {
+    url  = 'generate_people.php?idef=' + idef;
+
+	//before ajax call
+	$("#bs-people-ajax-loader").html('<img src="ajax-loader.gif" alt="Wait" />');
+	$("#bs-people").html('');
+	
+	var requestp = $.ajax({
+        url: url,
+        type: 'GET',
+        beforeSend: function( xhr ) {
+			xhr.overrideMimeType( 'text/html; charset=utf-8' );
+		},
+        dataType: 'html',
+        success: function ( received_data ) {
+        	$("#bs-people-ajax-loader").html('');
+			$("#bs-people").html(received_data);
+			callback();
+        },
+        error: function ( err ) {
+        	$("#bs-people-ajax-loader").html('');
+			$("#bs-people").html('No data');
+        }
+    });
+}
+
 function getHistoricalValues(idef) {
   
   
     var results = [];
-    var url  = 'generate_table.php?idef=' + idef;
+    url  = 'generate_table.php?idef=' + idef;
 
 	//before ajax call
 	$("#bs-table-ajax-loader").html('<img src="ajax-loader.gif" alt="Wait" />');
@@ -2166,7 +2196,43 @@ function getHistoricalValues(idef) {
 
 	/*if (request != undefined)
 		request.abort();*/
-
+		
+	var callback = function () {
+		//add dialog
+		bsDialog();
+		//bsVis();
+	
+		// add parser through the tablesorter addParser method 
+		$.tablesorter.addParser({ 
+		    // set a unique id 
+		    id: 'csNumberFormat', 
+		    is: function(s) { 
+		        // return false so this parser is not auto detected 
+		        return false; 
+		    }, 
+		    format: function(s) { 
+		        // format your data for normalization 
+		        return s.replace(/\u00a0/g,''); 
+		    }, 
+		    // set type, either numeric or text 
+		    type: 'numeric' 
+		});
+	
+        $("#bs-table-table").tablesorter({
+          widgets: ['zebra'],
+          decimal: ',',
+          headers: {
+            1: {sorter:'csNumberFormat'},
+            2: {sorter:'csNumberFormat'},
+            3: {sorter:'csNumberFormat'},
+            4: {sorter:'csNumberFormat'},
+            5: {sorter:'csNumberFormat'},
+            6: {sorter:'csNumberFormat'},
+            7: {sorter:'csNumberFormat'},
+          },
+          sortList: [[7,1]]
+        });
+    };
 
     var request = $.ajax({
         url: url,
@@ -2178,6 +2244,7 @@ function getHistoricalValues(idef) {
         success: function ( received_data ) {
         	$("#bs-table-ajax-loader").html('');
 			$("#bs-table").html(received_data);
+			callback();
         },
         error: function ( err ) {
         	$("#bs-table-ajax-loader").html('');
