@@ -2212,7 +2212,7 @@ function getHistoricalValues(node) {
       params += '&token=' + createArrayPost(node);
     }
     
-    url  = 'http://localhost/michal/budovanistatu.cz/drupal/sites/all/modules/bubbletree/generate_table.php?' + params;
+    url  = 'sites/all/modules/bubbletree/generate_table.php?' + params;
     //url  = 'generate_table.php';
     
     //create array for POST
