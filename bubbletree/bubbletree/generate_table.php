@@ -8,17 +8,18 @@ $since = 2004;
 $thru = 2010;
 setlocale(LC_MONETARY, 'cs_CZ.utf8');
 
-//print_r($_GET);//die();
+//print_r($_POST);//die();
 
 $data = array();
-if (!isset($_GET['idef']) or ($_GET['idef'] == 'undefined')) $idef = '';
-else $idef = $_GET['idef'];
+if (!isset($_POST['idef']) or ($_POST['idef'] == 'undefined')) $idef = '';
+else $idef = $_POST['idef'];
 $id_ar = explode('-',$idef);
 if (count($id_ar > 0)) {
   //try cache
   //if (false) { //disable cache
   if (file_exists('./cache/'.$idef.'.html')) {  //enable cache
   	  $html = file_get_contents('./cache/'.$idef.'.html');
+  	  //echo "cache:<br/>".$html;
   	  echo $html;
   } else {
 
@@ -64,17 +65,20 @@ if (count($id_ar > 0)) {
 			$names[$item->idef] = $item->name;
 			if (isset($sum[$year])) $sum[$year] += $item->hodnota;
 			else $sum[$year] = $item->hodnota;
-			$sort[$key] = $item->hodnota;
+			//$sort[$item->idef] = $item->hodnota;
 		}
 	  }
+	  
 	  //sort array by thru
-	  array_multisort($sort, SORT_DESC, $rodata);
-	  	  //print_r($rodata);die();
+	  //print_r($sort);//die();
+	  //array_multisort($sort, SORT_DESC, $rodata);
+	  uasort($rodata, "custom_sort");
+	  //print_r($rodata);//die();
 	  	  
 	  //get tokens
-	  if (isset($_GET['token'])) {
+	  if (isset($_POST['token']) and ($_POST['token'] != '')) {
 	    $token = array();
-	    $tok = explode('|',$_GET['token']);
+	    $tok = explode('|',$_POST['token']);
 	    array_pop($tok);
 	    foreach ($tok as $t) {
 	      $t_ar = explode(':',$t);
@@ -109,7 +113,7 @@ if (count($id_ar > 0)) {
 		//other rows
 	  $zebra = 'odd';
 	  foreach ($rodata as $key => $row) {
-		$table .= "<tr id='{$key}' class='{$zebra}'><td class='bs-table-first'>" . (isset($token[$key]) ? "<a href='#{$_GET['path']}/{$token[$key]}'>" : '') . $names[$key] . (isset($token[$key]) ? "</a>" : '') . "</td>";
+		$table .= "<tr id='{$key}' class='{$zebra}'><td class='bs-table-first'>" . (isset($token[$key]) ? "<a href='#{$_POST['path']}/{$token[$key]}'>" : '') . $names[$key] . (isset($token[$key]) ? "</a>" : '') . "</td>";
 		for ($year = $since; $year <= $thru; $year ++)
 			$table .= (isset($row[$year]) ? "<td>".money_format("%!.0n",$row[$year])."</td>" : "<td></td>");
 		$table .= "<td class='bs-table-small-chart' id='bs-small-chart-{$key}'>".small_chart($row,$since,$thru)."</td>";
@@ -144,6 +148,7 @@ if (count($id_ar > 0)) {
 */
 function small_chart($row,$since,$thru) {
   //
+  //print_r($row);die();
   $width = 50;
   $height = 20;
   $bar_width = floor($width/($thru-$since+1))-1;
@@ -152,10 +157,11 @@ function small_chart($row,$since,$thru) {
   for ($year = $since; $year <= $thru; $year ++) {
     if ($row[$year] > $max) $max = $row[$year];
     if (!isset($row[$year])) $row[$year] = 0;
+    $row[$year] = number_format($row[$year],0,'.',''); //see jetlogs.org/2008/02/05/php-problems-with-big-integers-and-scientific-notation/
   }
   ksort($row);
   $max = round(1.1*$max);
-  $url .= $max . "&chd=t:" . implode(',',$row);
+  $url .= number_format($max,0,'.','') . "&chd=t:" . implode(',',$row);
   return "<img src='{$url}' alt='chart' width='{$width}' height='{$height}'/>";
 }
 
@@ -175,11 +181,12 @@ function big_chart($row,$since,$thru) {
     if ($row[$year] > $max) $max = $row[$year];
     if (!isset($row[$year])) $row[$year] = 0;
     $years[] = $year;
+    $row[$year] = number_format($row[$year],0,'.',''); //see jetlogs.org/2008/02/05/php-problems-with-big-integers-and-scientific-notation/
   }
   ksort($row);
   $max = round(1.1*$max);
   $chxl1 = "|1:|0|" . n($max/2) . "|" . n($max);
-  $url .= $max . "&chd=t:" . implode(',',$row) . "&chxl=0:|" . implode('|',$years) . $chxl1 . "&chxr=0,0," . $max;
+  $url .= number_format($max,0,'.','') . "&chd=t:" . implode(',',$row) . "&chxl=0:|" . implode('|',$years) . $chxl1 . "&chxr=0,0," . number_format($max,0,'.','');
   return "<img src='{$url}' alt='chart' width='{$width}' height='{$height}'/>";
 }
 //chxt=x,y
@@ -210,7 +217,9 @@ function big_chart($row,$since,$thru) {
 	";
 	return $out;
 }*/
-
+/**
+*
+*/
 function n($number) {
   if ($number > 1000000000000) return round($number/1000000000000,1) . 'bil';
   if ($number > 1000000000) return round($number/1000000000,1) . 'mld';
@@ -218,4 +227,10 @@ function n($number) {
   if ($number > 1000) return round($number/1000,1) . 'tis';
   return $number;
 }
+/**
+* http://php.net/manual/en/function.array-multisort.php
+*/
+function custom_sort($a,$b) {
+          return $a['2010']<$b['2010'];
+     }
 ?>

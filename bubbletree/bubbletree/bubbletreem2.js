@@ -2163,7 +2163,7 @@ function my_table (node) {
 }
 
 function getPeople(idef) {
-    url  = 'generate_people.php?idef=' + idef;
+    url  = 'sites/all/modules/bubbletree/generate_people.php?idef=' + idef;
 
 	//before ajax call
 	$("#bs-people-ajax-loader").html('<img src="sites/all/modules/bubbletree/ajax-loader.gif" alt="Wait" /> Nahrávám data, bude to jen chvilka ...');
@@ -2206,13 +2206,12 @@ function getHistoricalValues(node) {
   
     var results = [];
     //generate parameters
-    params = 'idef=' + idef + '&path=' + path;
     if (node.c == undefined) { params += '&leaf=true'; }
     else {
-      params += '&token=' + createArrayPost(node);
+      token = createArrayPost(node);
     }
     
-    url  = 'sites/all/modules/bubbletree/generate_table.php?' + params;
+    url  = 'sites/all/modules/bubbletree/generate_table.php';// + params;
     //url  = 'generate_table.php';
     
     //create array for POST
@@ -2271,12 +2270,14 @@ function getHistoricalValues(node) {
 
     var request = $.ajax({
         url: url,
-        type: 'GET',
-        //type: 'POST',
-        /*traditional: true,
+        //type: 'GET',
+        type: 'POST',
+        //traditional: true,
         data: {
-          post: post.serialize()
-        },*/
+          idef: idef,
+          path: path,
+          token: token
+        },
         beforeSend: function( xhr ) {
 			xhr.overrideMimeType( 'text/html; charset=utf-8' );
 		},
@@ -2298,20 +2299,22 @@ function getHistoricalValues(node) {
 * recursion
 */
 function createArrayPost(node) {
-  out = '';
+  out = '|';
   //out.children = [];
-  if (node.c != undefined) {
+  if (typeof node.c !== "undefined") {
 	  for (x in node.c) {
 	  //alert (x);
 		if (node.c[x].l == 'Ostatní') {
 		  //recursion
 		  out += createArrayPost(node.c[x]);
-		  //alert(my_dump(ar));
 		} else {
-		   out += node.c[x].i + ':' + node.c[x].urlToken + '|';
+		   if (typeof node.c[x].c === "undefined") out += '';
+		   else if (node.c[x].c.length == 0) out += '';
+		   else out += node.c[x].i + ':' + node.c[x].urlToken + '|';
 		}
 	  }
   }
+  //alert(out);
   return out;
 }
 
