@@ -92,7 +92,6 @@ regions[page_top]       = Page top
 regions[page_bottom]    = Page bottom
 
 
-
 ; Various page elements output by the theme can be toggled on and off. The
 ; "features" control which of these check boxes display on the
 ; admin/appearance config page. This is useful for suppressing check boxes
@@ -126,3 +125,6 @@ settings[zen_wireframes]           = 0
 ; uncomment the line below.
 
 ;settings[shortcut_module_link]    = 1
+
+; Panels layouts. You can place multiple layouts under the "layouts" folder.
+plugins[panels][layouts] = layouts

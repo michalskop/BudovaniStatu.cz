@@ -31,7 +31,7 @@ body {
    */
   margin-left: auto;
   margin-right: auto;
-  width: 960px;
+  width: 1150px;
 }
 
 #page {
@@ -65,28 +65,28 @@ body {
 #content,
 .no-sidebars #content {
   float: left; /* LTR */
-  width: 960px;
+  width: 1150px;
   margin-left: 0; /* LTR */
-  margin-right: -960px; /* LTR */ /* Negative value of #content's width + left margin. */
+  margin-right: -1150px; /* LTR */ /* Negative value of #content's width + left margin. */
   padding: 0; /* DO NOT CHANGE. Add padding or margin to #content .section. */
 }
 
 .sidebar-first #content {
-  width: 760px;
+  width: 950px;
   margin-left: 200px; /* LTR */ /* The width of .region-sidebar-first. */
-  margin-right: -960px; /* LTR */ /* Negative value of #content's width + left margin. */
+  margin-right: -950px; /* LTR */ /* Negative value of #content's width + left margin. */
 }
 
 .sidebar-second #content {
-  width: 760px;
+  width: 950px;
   margin-left: 0; /* LTR */
-  margin-right: -760px; /* LTR */ /* Negative value of #content's width + left margin. */
+  margin-right: -950px; /* LTR */ /* Negative value of #content's width + left margin. */
 }
 
 .two-sidebars #content {
-  width: 560px;
+  width: 750px;
   margin-left: 200px; /* LTR */ /* The width of .region-sidebar-first */
-  margin-right: -760px; /* LTR */ /* Negative value of #content's width + left margin. */
+  margin-right: -750px; /* LTR */ /* Negative value of #content's width + left margin. */
 }
 
 #content .section {
@@ -106,6 +106,7 @@ body {
   height: 3em; /* The navigation can have any arbritrary height. We picked one
                     that is the line-height plus 1em: 1.3 + 1 = 2.3
                     Set this to the same value as the margin-top below. */
+  border-bottom: 1px solid #6ab9e2;
 }
 
 .with-navigation #content,
@@ -139,8 +140,8 @@ body {
 .region-sidebar-second {
   float: left; /* LTR */
   width: 200px;
-  margin-left: 760px; /* LTR */ /* Width of content + sidebar-first. */
-  margin-right: -960px; /* LTR */ /* Negative value of .region-sidebar-second's width + left margin. */
+  margin-left: 950px; /* LTR */ /* Width of content + sidebar-first. */
+  margin-right: -1150px; /* LTR */ /* Negative value of .region-sidebar-second's width + left margin. */
   padding: 0; /* DO NOT CHANGE. Add padding or margin to .region-sidebar-second .section. */
 }
 
@@ -153,7 +154,10 @@ body {
  * Footer
  */
 .region-footer {
+
 }
+
+
 
 /*
  * Page bottom

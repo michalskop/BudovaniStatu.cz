@@ -14,12 +14,17 @@
 body {
   margin: 0;
   padding: 0;
+  /*background: #ffffff url('../images/page-container.png') 0px 0px repeat-x;*/
+  /*text-align: center;*/
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
 }
 
 #page-wrapper {
 }
 
 #page {
+  
 }
 
 /*
@@ -40,94 +45,11 @@ body {
  * Header
  */
 #header {
-  background:  url('../images/header-2.jpg') left top no-repeat;
-  height: 88px;
-  margin: 0;
-  padding: 0;
+  width: 100%;
 }
 
 #header .section {
 }
-
-#googleSearch {
-    float: right;
-    padding-top: 37px;
-}
-
-#googleSearch input.btn {border: 1px solid #7E9DB9;
-                             height: 22px;
-                             width: 65px;
-                             padding-bottom: 2px;}
-
-#icons {float: none;
-            z-index: 2;
-            right: 2px;
-            list-style-type: none;
-            margin-top: 1.25em}
-    
-    #icons li {float: left;}
-    
-    #icons a.ico {display: block;
-                  width: 37px;
-                  height: 42px;
-                  }
-                  
-    #icons a.ico span {font-size: 0.4em;
-                       position: relative;
-                       z-index: -1;
-                       width: 37px;
-                  height: 42px;
-                  display: block;}
-                       
-    #icons a.facebook {background: url('../images/ico-fb.png') no-repeat;}
-    #icons a.youtube {background: url('../images/ico-youtube.png') no-repeat;}
-    #icons a.twitter {background: url('../images/ico-twit.png') no-repeat;}
-    #icons a.rss {background: url('../images/ico-rss.png') no-repeat;
-                  margin-right: 10px;}
-
-#bs-in-header {
-  float:right;
-}
-
-#icons-wrapper {
-  padding-top:65px;
-}
-
-#banner {float: right;
-             margin-top: 2px;}
-             
-    #inFooter {width: 1080px;
-               margin: 0px auto;
-               text-align: left;
-               color: #016fc4;}
-
-    #inFooter div.contact {width: 208px;
-                           float: left;}
-    
-    #inFooter div.about {width: 161px;
-                         float: left;}
-    
-    #inFooter h2 {font-size: 1.10em;
-                  font-weight: normal;
-                  margin-bottom: 10px;}
-    
-    #inFooter p {font-size: 0.75em;}
-    
-    #inFooter p.copyright {padding: 10px 0px 20px 0px;
-                           /*float: left;*/}
-    
-    #inFooter p.right {float: left;
-                       width: 410px;
-                       margin: 20px 0px 0px 0px;}
-    
-    #inFooter a {color: #016fc4;}
-    
-    #inFooter a:hover {text-decoration: none;}
-    
-    #inFooter ul {list-style-type: none;}
-    
-    #inFooter ul li {font-size: 0.75em;
-                     margin: 0px 0px 6px 0px;}
 
 #logo /* Wrapping link for logo */ {
   float: left; /* LTR */
@@ -165,8 +87,58 @@ div#site-name /* The name of the website */ {
 }
 
 .region-header /* Wrapper for any blocks placed in the header region */ {
-  /*clear: both;*/ /* Clear the logo */
+  clear: both; /* Clear the logo */
 }
+
+#inHeader {margin: 0px auto;
+           text-align: left;
+           width: 1150px;
+           height: 104px;
+           background:  url('../images/header.jpg') right top no-repeat;
+           position: relative;}
+
+    h1 {font-size: 0.90em;}
+    h1 a {background: url('../images/h1.jpg') no-repeat;
+          width: 433px;
+          height: 88px;
+          display: block;}
+    h1 a span {position: relative;
+               z-index: -1;}
+               
+    #icons {float: right;
+            position: absolute;
+            z-index: 2;
+            right: 2px;
+            bottom: 15px;
+            list-style-type: none;}
+    
+    #icons li {float: left;}
+    
+    #icons a.ico {display: block;
+                  width: 37px;
+                  height: 42px;}
+                  
+    #icons a.ico span {font-size: 0.4em;
+                       position: relative;
+                       z-index: -1;}
+                       
+    #icons a.facebook {background: url('../images/ico-fb.png') no-repeat;}
+    #icons a.youtube {background: url('../images/ico-youtube.png') no-repeat;}
+    #icons a.twitter {background: url('../images/ico-twit.png') no-repeat;}
+    #icons a.rss {background: url('../images/ico-rss.png') no-repeat;
+                  margin-right: 10px;}
+
+
+
+    #googleSearch {position: absolute;
+                   top: 38px;
+                   left: 441px;}
+    
+    #googleSearch input.btn {border: 1px solid #7E9DB9;
+                             height: 22px;
+                             width: 65px;
+                             padding-bottom: 2px;}
+                             
 
 /*
  * Main (container for everything else)
@@ -175,7 +147,6 @@ div#site-name /* The name of the website */ {
 }
 
 #main {
-  min-height: 400px;
 }
 
 /*
@@ -201,10 +172,6 @@ h2.title, /* Comment section heading */
 h2.comment-form, /* Comment form heading */
 h3.title /* Comment title */ {
   margin: 0;
-}
-
-h1.title {
-  padding-top:.5em;
 }
 
 tr.even /* Some tables have rows marked even or odd. */ {
@@ -309,12 +276,45 @@ ul.links li {
  * Footer
  */
 .region-footer {
-  background-color: #C8E3F4;
-  border-top: 1px solid #6ab9e2;
-  padding-bottom: 10px;
+  width: 100%;
+  background: #c8e3f4 url('../images/body.png') repeat-x;
+  padding-bottom: 40px;
+  height: 229px;
 }
+#inFooter {width: 1080px;
+               margin: 0px auto;
+               text-align: left;
+               color: #016fc4;}
 
-
+    #inFooter div.contact {width: 208px;
+                           float: left;}
+    
+    #inFooter div.about {width: 161px;
+                         float: left;}
+    
+    #inFooter h2 {font-size: 1.10em;
+                  font-weight: normal;
+                  margin-bottom: 10px;}
+    
+    #inFooter p {font-size: 0.75em;}
+    
+    #inFooter p.copyright {margin: 10px 0px 20px 0px;
+                           float: left;}
+    
+    #inFooter p.right {float: left;
+                       width: 410px;
+                       margin: 20px 0px 0px 0px;}
+    
+    #inFooter a {color: #016fc4;}
+    
+    #inFooter a:hover {text-decoration: none;}
+    
+    #inFooter ul {list-style-type: none;}
+    
+    #inFooter ul li {font-size: 0.75em;
+                     margin: 0px 0px 6px 0px;}
+    #banner {float: right;
+             margin-top: 2px;}
 
 /*
  * Page bottom

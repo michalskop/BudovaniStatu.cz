@@ -16,6 +16,7 @@ li a.active {
  */
 #navigation {
   /* overflow: hidden; /* Sometimes you want to prevent overlapping with main div. */
+  /*background: #ffffff url('../images/menu.png') left bottom repeat-x;*/
 }
 
 #navigation ul.links, /* Main menu and secondary menu links */
@@ -37,8 +38,29 @@ li a.active {
 /*
  * Main menu and Secondary menu links
  */
-#main-menu {
-}
+    #main-menu {list-style-type: none;
+              /*float: left;*/
+              /*position: absolute;*/
+              left: 0px;
+              bottom: 0px;
+              /*width: 100%*/;
+              height: 44px;
+              /*background: #ffffff url('../images/menu.png') repeat-x;*/}
+              
+    #main-menu li {float: left;
+                 display: block;
+                 /*height: 20px;*/
+                 margin-top: .55em;}
+    
+    #main-menu li a {color: #000000;
+                   font-size: 0.95em;
+                   text-decoration: none;
+                   padding: .5em 1.25em 1.6em;
+                   display: block;}
+
+    #main-menu li a:hover, #main-menu li a.active {color: #d91215;}
+
+    #main-menu li a.active {background: url('../images/menu-arrow.png') center bottom no-repeat;}
 
 #secondary-menu {
   float: right;
