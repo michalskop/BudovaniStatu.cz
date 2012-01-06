@@ -140,3 +140,15 @@ function STARTERKIT_preprocess_block(&$variables, $hook) {
   $variables['classes_array'][] = 'count-' . $variables['block_id'];
 }
 // */
+
+/**
+* adds <span></span> around the manu items
+* http://drupal.org/node/1076152
+*/
+function zen_bs_links__system_main_menu(&$vars) {
+  foreach ($vars['links'] as &$link) {
+    $link['title'] = '<span>' . $link['title'] . '</span>';
+    $link['html'] = TRUE;
+  }
+  return theme_links($vars);
+}
