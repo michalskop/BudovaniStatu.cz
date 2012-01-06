@@ -147,7 +147,7 @@ function STARTERKIT_preprocess_block(&$variables, $hook) {
 */
 function zen_bs_links__system_main_menu(&$vars) {
   foreach ($vars['links'] as &$link) {
-    $link['title'] = '<span>' . $link['title'] . '</span>';
+    $link['title'] = '<span class="bs-menu-link">' . $link['title'] . '</span>';
     $link['html'] = TRUE;
   }
   return theme_links($vars);
