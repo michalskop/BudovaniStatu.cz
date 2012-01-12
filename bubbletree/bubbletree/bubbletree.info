@@ -1,4 +1,0 @@
-;$Id$
-name = "BS Bubbletree"
-description = "Bubbletree application for budovanistatu.cz"
-core = 7.x
