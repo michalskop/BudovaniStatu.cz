@@ -1,0 +1,103 @@
+<?php
+
+/**
+* Drupal core hooks
+*/
+
+
+/**
+* Implementation of hook_menu().
+*/
+function bubbletree_menu() {
+  $items['bubble'] = array(
+    'title' => 'Rozklikávací rozpočet',
+    'page callback' => 'bubbletree_create_app',
+    //'file' => 'dailybread_config.inc',
+    'access callback' => TRUE,
+    'menu_name' => 'main-menu',
+  );
+  
+  return $items;
+}
+
+/**
+*
+*/
+function bubbletree_create_app() {
+  //include js + css
+  drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/jquery-1.5.2.min.js');
+  drupal_add_js("https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js",'external');
+  drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/jquery.history.js');
+  drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/raphael.js');
+  drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/vis4.js');
+  drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/Tween.js');
+  drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/jquery.tablesorter.min.js');
+  
+  drupal_add_js(drupal_get_path('module', 'bubbletree') . '/bubbletreem2.js');
+  
+  drupal_add_css('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css','external');
+  drupal_add_css(drupal_get_path('module', 'bubbletree') . '/blue/style.css',array('group' => CSS_DEFAULT, 'every_page' => FALSE));
+  //drupal_add_html_head_link(array('href' => drupal_get_path('module', 'bubbletree') . '/blue/style.css', 'rel' => 'stylesheet', 'type' => 'text/css', 'media' => 'all'));
+  drupal_add_html_head_link(array('href' => drupal_get_path('module', 'bubbletree') . '/bubbletreem.css', 'rel' => 'stylesheet', 'type' => 'text/css', 'media' => 'all'));
+  
+  drupal_add_js(
+  	"$(function() { 		
+	   //before ajax call
+	   $('#bubbletree-ajax-loader').html('<img src=\"".drupal_get_path('module', 'bubbletree') . "/ajax-loader.gif\" alt=\"Wait\" /> Nahrávám data rozpočtu, může to chvíli trvat ...');
+       $.ajax({
+		  url: '".drupal_get_path('module', 'bubbletree') . "/datab9.json',
+		  dataType: 'json',
+		  success: function (d) {	
+			new BubbleTree({
+				data: d,
+				container: '.bubbletree',
+				maxNodesPerLevel: 15
+			});
+		  },
+		});
+	});
+	$(function() {
+		$( '#tabs' ).tabs();
+	});
+	",'inline');
+  $html = _body_markup();
+  return theme('html_tag',$html);
+}
+
+function _body_markup() {
+$div = array(
+    'element' => array(
+       '#tag' => 'div',
+       '#value' => '
+	<div id="bs-breadcrumbs">Rozpočet</div>
+	<div id="tabs">
+	  <ul>
+	    <li><a href="#tabs-1">Graf</a></li>
+	    <li><a href="#tabs-2">Tabulka</a></li>
+	    <li><a href="#tabs-3">Lidé</a></li>
+	  </ul>
+	  <div id="tabs-1">
+	  	    <div id="bubbletree-ajax-loader"></div>
+			<div class="bubbletree-wrapper" style="width:900px;height:600px">
+				<div class="bubbletree"></div>
+			</div>
+	  </div>
+	  <div id="tabs-2">
+			<div id="bs-table-ajax-loader"></div>
+			<div id="bs-table"></div>
+	  </div>
+	  <div id="tabs-3">
+			<div id="bs-people-ajax-loader"></div>
+			<div id="bs-people"></div>
+	  </div>
+	</div>
+	  ',
+	),
+);
+return $div;
+}
+
+	
+?>
+	
+
