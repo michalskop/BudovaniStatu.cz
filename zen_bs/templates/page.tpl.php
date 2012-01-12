@@ -69,9 +69,10 @@
  */
 ?>
 
+<div id="pagewdw">
 <div id="page-wrapper"><div id="page">
 
-  <div id="header"><div class="section clearfix">
+  <div id="header">
 
     <?php if ($logo): ?>
       <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
@@ -112,10 +113,11 @@
 
     <?php print render($page['header']); ?>
 
-  </div></div><!-- /.section, /#header -->
+  </div><!-- /.section, /#header -->
 
   <div id="main-wrapper"><div id="main" class="clearfix<?php if ($main_menu || $page['navigation']) { print ' with-navigation'; } ?>">
 
+    <div id="container" class="clearfix">
     <div id="content" class="column"><div class="section">
       <?php print render($page['highlighted']); ?>
       <?php print $breadcrumb; ?>
@@ -136,6 +138,7 @@
       <?php print render($page['content']); ?>
       <?php print $feed_icons; ?>
     </div></div><!-- /.section, /#content -->
+    
 
     <?php if ($page['navigation'] || $main_menu): ?>
       <div id="navigation"><div class="section clearfix">
@@ -162,6 +165,8 @@
 
     <?php print render($page['sidebar_second']); ?>
 
+    </div> <!-- /#container -->
+    
   </div></div><!-- /#main, /#main-wrapper -->
 
   <?php print render($page['footer']); ?>

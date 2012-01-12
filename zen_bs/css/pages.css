@@ -39,45 +39,41 @@ body {
 /*
  * Header
  */
-#header {
-  background:  url('../images/header-2.jpg') left top no-repeat;
-  height: 88px;
-  margin: 0;
-  padding: 0;
-}
+#pagewdw {background: #ffffff url('../images/page-container.png') 0px 0px repeat-x;}
 
-#header .section {
-}
+#header {width: 100%;}
 
-#googleSearch {
-    float: right;
-    padding-top: 37px;
-}
+#inHeader {margin: 0px auto;
+           text-align: left;
+           width: 1150px;
+           height: 95px;
+           background:  url('../images/header.jpg') right top no-repeat;
+           position: relative;}
 
-#googleSearch input.btn {border: 1px solid #7E9DB9;
-                             height: 22px;
-                             width: 65px;
-                             padding-bottom: 2px;}
+    h1 {font-size: 0.90em;}
+    h1 a {background: url('../images/h1.jpg') no-repeat;
+          width: 433px;
+          height: 88px;
+          display: block;}
+    h1 a span {position: relative;
+               z-index: -1;}
 
-#icons {float: none;
+    #icons {float: right;
+            position: absolute;
             z-index: 2;
             right: 2px;
-            list-style-type: none;
-            margin-top: 1.25em}
+            bottom: -60px;
+            list-style-type: none;}
     
     #icons li {float: left;}
     
     #icons a.ico {display: block;
                   width: 37px;
-                  height: 42px;
-                  }
+                  height: 42px;}
                   
     #icons a.ico span {font-size: 0.4em;
                        position: relative;
-                       z-index: -1;
-                       width: 37px;
-                  height: 42px;
-                  display: block;}
+                       z-index: -1;}
                        
     #icons a.facebook {background: url('../images/ico-fb.png') no-repeat;}
     #icons a.youtube {background: url('../images/ico-youtube.png') no-repeat;}
@@ -85,13 +81,23 @@ body {
     #icons a.rss {background: url('../images/ico-rss.png') no-repeat;
                   margin-right: 10px;}
 
-#bs-in-header {
-  float:right;
-}
 
-#icons-wrapper {
-  padding-top:65px;
-}
+    #googleSearch {position: absolute;
+                   top: 38px;
+                   left: 441px;}
+    
+    #googleSearch input.btn {border: 1px solid #7E9DB9;
+                             height: 22px;
+                             width: 65px;
+                             padding-bottom: 2px;}
+
+#container {width: 1150px;
+            margin: 0px auto;
+            background-color: #ffffff;
+            padding-top: 10px;}
+
+
+
 
 #banner {float: right;
              margin-top: 2px;}

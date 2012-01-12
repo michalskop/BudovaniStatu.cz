@@ -5,7 +5,7 @@
 
 
 .block /* Block wrapper */ {
-  margin-bottom: 1.5em;
+  margin-bottom: 0px;
 }
 
 .block.first /* The first block in the region */ {

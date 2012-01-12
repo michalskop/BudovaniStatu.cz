@@ -15,6 +15,8 @@ li a.active {
  * Navigation bar
  */
 #navigation {
+  margin-top: 0px;
+  text-align: center;
   /* overflow: hidden; /* Sometimes you want to prevent overlapping with main div. */
   /*background: #ffffff url('../images/menu.png') left bottom repeat-x;*/
 }
@@ -29,7 +31,7 @@ li a.active {
 #navigation ul.links li, /* A simple method to get navigation links to appear in one line. */
 #navigation .content li {
   float: left; /* LTR */
-  padding: 0 10px 0 0; /* LTR */
+  padding: 0 0 0 0; /* LTR */
 }
 
 .region-navigation {
@@ -38,29 +40,31 @@ li a.active {
 /*
  * Main menu and Secondary menu links
  */
-    #main-menu {list-style-type: none;
-              /*float: left;*/
-              /*position: absolute;*/
-              left: 0px;
-              bottom: 0px;
-              /*width: 100%*/;
+#main-menu {list-style-type: none;
               height: 44px;
-              /*background: #ffffff url('../images/menu.png') repeat-x;*/}
+              background: #ffffff url('../images/menu.png') repeat-x;}
               
-    #main-menu li {float: left;
+#main-menu li {float: left;
                  display: block;
-                 /*height: 20px;*/
-                 margin-top: .55em;}
+                 height: 20px;
+                 margin-top: 8px;}
     
-    #main-menu li a {color: #000000;
+#main-menu li a {color: #000000;
                    font-size: 0.95em;
                    text-decoration: none;
-                   padding: .5em 1.25em 1.6em;
+                   padding: 0px 15px 30px 15px;
                    display: block;}
 
-    #main-menu li a:hover, #main-menu li a.active {color: #d91215;}
+#main-menu li a span {display: block;
+                        padding: 0px;
+                        height: 35px;
+                        float: left;
+                        cursor: pointer;}
 
-    #main-menu li a.active {background: url('../images/menu-arrow.png') center bottom no-repeat;}
+#main-menu li a:hover, #main-menu li a.active {color: #d91215;}
+
+#main-menu li a.active span {background: url('../images/menu-arrow.png') center bottom no-repeat;}
+
 
 #secondary-menu {
   float: right;
