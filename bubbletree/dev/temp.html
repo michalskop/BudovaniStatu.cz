@@ -1,0 +1,67 @@
+<html>
+<head>
+	<script type="text/javascript" src="../lib/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+	$("#chart_div").click(function() {
+	alert('ja');
+	  //bsVis();
+	});
+    $(function() {
+  //bsVis();
+});
+    function bsVis() {
+      
+      
+
+      function drawChart() {
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Rok');
+		data.addColumn('number', 'Výdaje');
+		data.addRows([
+			['2004', 5769030],
+			['2005', 7787770],
+			['2006', 9041550],
+			['2007', 9809030],
+			['2008', 10261530],
+			['2009', 18482180],
+			['2010', 9606690]
+		]);
+		var options = {
+		width: 400, height: 240,
+		title: 'Org1',
+		hAxis: {title: 'Rok', titleTextStyle: {color: 'red'}},
+		vAxis: {baseline : 0}
+		};
+		var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+		chart.draw(data, options);
+		
+		
+		
+		var data2 = new google.visualization.DataTable();
+        data2.addColumn('string', 'Year');
+        data2.addColumn('number', 'Sales');
+        data2.addColumn('number', 'Expenses');
+        data2.addRows([
+          ['2004', 1000, 400],
+          ['2005', 1170, 460],
+          ['2006', 660, 1120],
+          ['2007', 1030, 540]
+        ]);
+
+        var options2 = {
+          width: 400, height: 240,
+          title: 'Company Performance',
+          hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
+        };
+
+        var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+        chart2.draw(data2, options2);
+	}
+}
+</script>
+</head><body>
+<div class='bs-big-chart' id='chart_div'>X</div>
+<div class='bs-big-chart' id='chart_div2'></div>
+</body></html>

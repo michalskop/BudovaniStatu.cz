@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Rozpočet ČR 2010</title>
+	<script type="text/javascript" src="../lib/jquery-1.5.2.min.js"></script>
+	<script type="text/javascript" src="../lib/jquery.history.js"></script>
+	<script type="text/javascript" src="../lib/raphael.js"></script>
+
+	<script type="text/javascript" src="../lib/vis4.js"></script>
+	<script type="text/javascript" src="../lib/Tween.js"></script>
+	<script type="text/javascript" src="../build/bubbletreem2.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="./jquery.tablesorter.min.js"></script> 
+	
+	<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
+	
+	<link rel="stylesheet" type="text/css" href="../build/bubbletree.css" />
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="./blue/style.css" type="text/css" media="all" />
+	
+	<script type="text/javascript" src="../styles/cofog.js"></script>
+	
+	<script type="text/javascript" src="./trialdata.js"></script>
+	
+	
+	<script type="text/javascript">    
+	$(function() {
+	  		
+	   //before ajax call
+	   $("#bubbletree-ajax-loader").html('<img src="ajax-loader.gif" alt="Wait" /> Nahrávám data, může to chvilku trvat ...');
+	  
+       $.ajax({
+		  url: './datab9.json',
+		  dataType: 'json',
+		  success: function (d) {
+		  		/*d.children = dd;
+		    	d.label='Rozpočet';
+				d.id= 't';
+				d.urlLabel='tx';
+				d.amount=1279434643200;*/
+				//alert(my_dump(d.children));
+
+			
+			new BubbleTree({
+				data: d,
+				container: ".bubbletree",
+				maxNodesPerLevel: 15
+			});
+			
+		  },
+		});
+
+	});
+	$(function() {
+	
+	  $(function() {
+		$( "#tabs" ).tabs();
+	  });
+	  
+	  
+	
+	
+  /*$(".table-row").click(function() {
+    var html = '';
+    var url = '';
+    for (year = 2006; year <= 2010; year++) {
+		url_src = 'http://cz.cecyf.megivps.pl/api/json/dataset/0/view/0/issue/'+year+'/'+ $(this).attr('id')+'/';
+		url = 'http://localhost/michal/budovanistatu.cz/bubbletree/dev/get.php?url='+encodeURI(url_src);
+		$.ajax({
+			  url: url,
+			  dataType: 'json',
+			  success: function (data) {
+				//alert (my_dump(data.data));
+				html += data.data[0].hodnota + ',';
+			  },
+			  async : false
+		});
+	}
+	$("#cell-"+$(this).attr('id')).html(html);
+  });*/
+  
+  /*$(".table-row").click( function () {
+    var idef = $(this).attr('id');
+    var results = [];
+    var counter = 0;
+    var year;
+    var url  = 'get.php?url=';
+        url += 'http://cz.cecyf.megivps.pl/api/json/dataset/1/view/0/issue/';
+
+    var callback = function () {
+        if( counter !== 7 ) {
+            return;
+        }
+        $('#cell-'+idef).html( results.join('') );
+    };
+
+    for( year = 2004; year <= 2010; year++ ) {
+        (function ( y ) {
+            $.ajax({
+                url: url + encodeURI( y+'/a/'+idef+'/?fields=hodnota' ),
+                type: 'GET',
+                dataType: 'json',
+                success: function ( received_data ) {
+                    counter += 1;
+                    results[ y-2004 ] = received_data.data[0].hodnota + ',';
+                    callback();
+                },
+                error: function ( err ) {
+                    counter += 1;
+                    results[ y-2004 ] = 'No data,';
+                    callback();
+                }
+            });
+        })( year );
+    }
+	});*/
+	
+	
+  
+	});
+
+
+	function bubble(d) {	
+	
+		new BubbleTree({
+				data: d,
+				container: ".bubbletree",
+			});	
+    }                                   
+	</script>
+
+</head>
+<body>
+	<div id="bs-breadcrumbs">X</div>
+	<div id="tabs">
+	  <ul>
+	    <li><a href="#tabs-1">Graf</a></li>
+	    <li><a href="#tabs-2">Tabulka</a></li>
+	    <li><a href="#tabs-3">Lidé</a></li>
+	  </ul>
+	  <div id="tabs-1">
+	  	    <div id="bubbletree-ajax-loader"></div>
+			<div class="bubbletree-wrapper" style="width:800px;height:600px">
+				<div class="bubbletree"></div>
+			</div>
+	  </div>
+	  <div id="tabs-2">
+			<div id="bs-table-ajax-loader"></div>
+			<div id="bs-table"></div>
+	  </div>
+	  <div id="tabs-3">
+			<div id="bs-people-ajax-loader"></div>
+			<div id="bs-people"></div>
+	  </div>
+	</div>
+	
+</body>
+</html>
+
