@@ -7,12 +7,13 @@ $since = 2004;
 $thru = 2010;
 //if none -> government
 if (!isset($_GET['idef']) or ($_GET['idef'] == 'undefined')) $idef = '304';
+else $idef = $_GET['idef'];
 
 //get info
 $json = array();
 for ($year = $thru; $year >= $since; $year--) {
   $url = "http://nasipolitici.cz/budovani-statu-data?";
-  $url .= 'year='.$year;//'&id='.$idef;
+  $url .= 'year='.$year.'&id='.$idef;
   $json[$year] = json_decode(file_get_contents($url));
 }
 

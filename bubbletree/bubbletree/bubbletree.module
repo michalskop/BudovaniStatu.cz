@@ -65,6 +65,7 @@ function bubbletree_create_app() {
 }
 
 function _body_markup() {
+$meth = _meth_text();
 $div = array(
     'element' => array(
        '#tag' => 'div',
@@ -75,6 +76,7 @@ $div = array(
 	    <li><a href="#tabs-1">Graf</a></li>
 	    <li><a href="#tabs-2">Tabulka</a></li>
 	    <li><a href="#tabs-3">Lidé</a></li>
+	    <li><a href="#tabs-4">Metodika</a></li>
 	  </ul>
 	  <div id="tabs-1">
 	  	    <div id="bubbletree-ajax-loader"></div>
@@ -90,11 +92,57 @@ $div = array(
 			<div id="bs-people-ajax-loader"></div>
 			<div id="bs-people"></div>
 	  </div>
+	  <div id="tabs-4">
+			<div id="bs-methodology">'.$meth.'</div>
+	  </div>
 	</div>
 	  ',
 	),
 );
 return $div;
+}
+
+/**
+*
+*/
+function _meth_text() {
+  $html = '
+<h2>Metodika „rozklikávacího“ rozpočtu</h2>
+<p>Metodika tabulek vychází z třídění výdajů, které používá státní správa, a které je stanoveno zejména zákonem č. 218/2000Sb., a vyhláškou č. 353/2002 Sb. (dále jen Vyhláška).</p>
+<p>Zdrojem dat byla veřejně přístupná databáze IDB Aris / ÚFIS spravovaná Ministerstvem financí České republiky.</p>
+<p>Analýza je zaměřena na přehledné zobrazení výdajů státního rozpočtu České republiky a to formou časových řad a dekompozice státního rozpočtu/kapitol/organizací/typu výdaje. Z důvodů vizuálního zobrazení proporcí na jedné straně a exaktností na straně druhé byly zvoleny jak grafické vyjádření hodnot tak i tabulky, oboje v „rozklikávací“ verzi.</p>
+<h3>Popis jednotlivých úrovní</h3>
+<h4>První úroveň</h4>
+<p>Rozčlenění výdajů státního rozpočtu celkem (první řádek nahoře) na výdaje dle jednotlivých kapitol (odpovědnostní třídění, příloha A Vyhlášky).</p>
+<h4>Druhá úroveň</h4>
+<p>Kapitoly se dále člení na výdaje celkem dle jednotlivých státních organizací (organizační složky státu i státní příspěvkové organizace) dané jednoznačným identifikačním číslem organizace.</p>
+<p>Tato úroveň je vhodná pro přehled o jednotlivých organizací v rámci kapitoly a jejich „významnosti“ měřené celkovými výdaji.</p>
+<h4>Třetí úroveň</h4>
+<p>je zaměřena na rozčlenění výdajů jednotlivých organizací dle druhového třídění rozpočtové skladby (příloha B Vyhlášky)</p>
+<table>
+<thead>
+  <tr><td>Část</td><td>Detail</td><td>Položka</td></tr>
+</thead>
+<tbody>
+  <tr><td rowspan="3">Provozní výdaje</td><td>Běžné provozní výdaje</td><td>5000-5199</td></tr>
+  <tr><td>Náhrady zaměstnancům v době nemoci</td><td>5424</td></tr>
+  <tr><td>Převody do FKSP</td><td>5342</td></tr>
+  <tr><td>Investiční výdaje</td><td>Investiční výdaje</td><td>6100-6299</td></tr>
+  <tr><td rowspan="2">Neinvestiční transfery</td><td>Neinvestiční transfery</td><td>5201-5250</td></tr>
+  <tr><td>Neinvestiční transfery</td><td>5311-5790</td></tr>
+  <tr><td rowspan="2">Investiční transfery</td><td>Investiční transfery</td><td>6300-6359</td></tr>
+  <tr><td>Investiční transfery</td><td>6371-6789</td></tr>
+  <tr><td rowspan="4">Převody fondům</td><td>Neinvestiční převody fondům</td><td>5341+5343-5349</td></tr>
+  <tr><td>Investiční transfery</td><td>5901-5909</td></tr>
+  <tr><td>Investiční transfery</td><td>6361</td></tr>
+  <tr><td>Investiční transfery</td><td>6901-6909</td></tr>
+  
+</tbody>
+</table>
+<h4>Čtvrtá úroveň</h4>
+<p>Zobrazuje výdaj dle odvětvového třídění rozpočtové skladby (příloha C Vyhlášky).</p>
+  ';
+  return $html;
 }
 
 	

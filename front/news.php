@@ -19,7 +19,7 @@ function create_news_table($ar) {
   foreach($ar as $item) {
     $html .= "<div class='article".($i>0 ? " delimiter":'')."'><h3>{$item->title}</h3>";
     $html .="<p>{$item->text}";
-    $html .= "<a class='read' href='news?id={$item->id}'>Více</a></p></div><div class='cleaner'></div>";
+    $html .= "<a class='read' href='news/{$item->id}'>Více</a></p></div><div class='cleaner'></div>";
     $i++;
   }
   return $html;

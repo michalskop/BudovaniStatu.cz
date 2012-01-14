@@ -40,7 +40,7 @@ if (count($id_ar > 0)) {
 			  }
 		  }
 		  //download data
-		  $url = "http://cz.cecyf.megivps.pl/api/json/dataset/1/view/0/issue/{$year}/{$url_bit}".chr($letter).'?fields=hodnota,idef,name';
+		  $url = "http://cz.cecyf.megivps.pl/api/json/dataset/0/view/0/issue/{$year}/{$url_bit}".chr($letter).'?fields=hodnota,idef,name';
 		  if ($file = file_get_contents($url)) {
 			$object = json_decode($file);
 			$data[$year] = $object->data;

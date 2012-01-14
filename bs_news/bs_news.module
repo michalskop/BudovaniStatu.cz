@@ -1,0 +1,82 @@
+<?php
+
+/**
+* Drupal core hooks
+*/
+
+/**
+* Implementation of hook_menu().
+*/
+function bs_news_menu() {
+  $items['news/%'] = array(
+    'title' => 'Články',
+    'title callback' => '_nothing',
+    'page callback' => 'bs_news_article',
+    'access callback' => TRUE,
+    //'menu_name' => 'main-menu',
+  );
+  $items['news'] = array(
+    'title' => 'Články',
+    'page callback' => 'bs_news_article',
+    'access callback' => TRUE,
+    'menu_name' => 'main-menu',
+  );
+  
+  return $items;
+}
+
+/**
+*
+*/
+function _nothing() {
+}
+
+/**
+*
+*/
+function bs_news_article() {
+  $id = arg(1);
+  
+  if (is_numeric($id)) {
+  
+	  $url = "http://www.nasipolitici.cz/budovani-statu/new-detail?id=".$id;
+	  $json = file_get_contents($url);
+	  
+	  if ($json === false) return 'No data';
+	  
+	  $obj = json_decode($json);
+	  
+	  $html = "<h1>{$obj->title}</h1>";
+	  $html .= "<div class='article-body'>{$obj->text}</div>";
+  } else {
+      $limit = 3;
+
+	  $url = "http://www.nasipolitici.cz/budovani-statu/new-listing?limit=". $limit;
+	  $json = file_get_contents($url);
+	  if ($json === false) return 'No data';
+	  
+	  $obj = json_decode($json);
+	  
+	  if (count($obj) > 0)
+	    $html = _create_news_table($obj);
+	  else $html = 'No data';
+  }
+  return $html;
+}
+/**
+*
+*/
+function _create_news_table($ar) {
+  $html = '';
+  $i = 0;
+  foreach($ar as $item) {
+    $html .= "<div class='article".($i>0 ? " delimiter":'')."'><h3>{$item->title}</h3>";
+    $html .="<p>{$item->text}";
+    $html .= "<a class='read' href='news/{$item->id}'>Více</a></p></div><div class='cleaner'></div>";
+    $i++;
+  }
+  return $html;
+}
+
+
+?>
