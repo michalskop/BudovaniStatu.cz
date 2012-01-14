@@ -50,7 +50,7 @@ if (count($id_ar > 0)) {
 	  //get parent info
 	  if ($idef == '') $parent = 'Státní rozpočet';
 	  else {
-		$url = "http://cz.cecyf.megivps.pl/api/json/dataset/1/view/0/issue/{$thru}/a/{$idef}?fields=name";
+		$url = "http://cz.cecyf.megivps.pl/api/json/dataset/0/view/0/issue/{$thru}/a/{$idef}?fields=name";
 		$object = json_decode(file_get_contents($url));
 		$parent = $object->data[0]->name;
 	  }
