@@ -5,12 +5,14 @@
 //GLOBAL VARIABLES
 var min_income = 10000; //must be >0
 var max_income = 100000; //must be >0
+var step = 1000;
+var default_income = 25000;
 var min_income_ln = Math.log(min_income);
 var max_income_ln = Math.log(max_income);
 
 //income -> tax function
 function income2tax(income) {
-  return 12*income/3;
+  return 12*income*0.62;
 }
 
 //load radio styling
@@ -28,9 +30,16 @@ $(function() {
 
 $(function() {
   //set slider
-  $( "#db-slider" ).slider({value:value2slider($("#db-income-field-text").val(),min_income,max_income)});
+  if (($("#db-income-field-text").val() <= max_income) && ($("#db-income-field-text").val() >= min_income))
+    current_value = $("#db-income-field-text").val();
+  else
+    current_value = default_income;
+  //logarithmic:
+  //$( "#db-slider" ).slider({value:value2slider(current_value,min_income,max_income)});
+  //linear:
+  $( "#db-slider" ).slider({value:current_value,min:min_income,max:max_income,step:step});
   //set income field
-  $("#db-income-field-text").val(slider2value($( "#db-slider" ).slider("option","value"),min_income,max_income).toFixed(0));
+  $("#db-income-field-text").val(parseFloat(slider2value($( "#db-slider" ).slider("option","value"),min_income,max_income)).toFixed(0));
   //recalculate
   recalculate();
   
@@ -39,7 +48,7 @@ $(function() {
 $(function() {
   //on slider change
   $("#db-slider").slider({
-    change: function(event,ui) {$("#db-income-field-text").val((slider2value($( "#db-slider" ).slider("option","value"),min_income,max_income)).toFixed(0));
+    change: function(event,ui) {$("#db-income-field-text").val(parseFloat(slider2value($( "#db-slider" ).slider("option","value"),min_income,max_income)).toFixed(0));
     recalculate();
     }
   });
@@ -56,12 +65,21 @@ $(function() {
 
 
 function slider2value(slider_value,minn,maxx) {
-  lnx = slider_value/100*(Math.log(maxx) - Math.log(minn)) + Math.log(minn);
-  return Math.exp(lnx);
+  //logarithmic:
+  //lnx = slider_value/100*(Math.log(maxx) - Math.log(minn)) + Math.log(minn);
+  //return Math.exp(lnx);
+  
+  //linear:
+  lin = slider_value;
+  return lin;
 }
 
 function value2slider(value,minn,maxx) {
-  return 100*(Math.log(value) - Math.log(minn))/(Math.log(maxx) - Math.log(minn));
+  //logarithmic:
+  //return 100*(Math.log(value) - Math.log(minn))/(Math.log(maxx) - Math.log(minn));
+  
+  //linear:
+  return value;
 }
 
 function recalculate() {

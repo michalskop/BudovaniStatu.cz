@@ -38,6 +38,7 @@ function dailybread_create_app() {
   //drupal_add_html_head_link(array('href' => '../' . drupal_get_path('module', 'dailybread') . '/' . 'dailybread.css', 'rel' => 'stylesheet', 'type' => 'text/css', 'media' => 'all'),TRUE);
   //drupal_add_css('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css');
   drupal_add_css(drupal_get_path('module', 'dailybread') . '/dailybread.css');
+  drupal_add_css(drupal_get_path('theme', 'zen_bs') . '/css/jquery-ui-1.8.16.custom.css');
 
   //include data for the app
   $config = _get_config();
@@ -111,7 +112,8 @@ function _create_radios() {
   $radio = array(
     'element' => array(
       '#tag' => 'form',
-      '#value' => theme('html_tag', $text_radio) . theme('html_tag', $div_radio),
+      //'#value' => theme('html_tag', $text_radio) . theme('html_tag', $div_radio),
+      '#value' => theme('html_tag', $div_radio),
       '#attributes' => array('class' => array('db-time-period')),
     ),
   );
@@ -293,6 +295,81 @@ function _create_upper_part($data,$config) {
 
 /**
 * create table for dailybread
+* having two section: 1st with icons, 2nd without icons
+*/
+function _create_table2($data,$config,$sum_rate) {
+  //create table
+  $i = 0;
+  $j = 0;
+  $max_row = max($config['table_numbers']);
+  $rows = array();
+  //rows
+  foreach($config['table_numbers'] as $num){
+    $colspan = $max_row/$num;
+    $row1 = array();
+    $row2 = array();
+    //a (double) row
+    for ($k=$i; $k < $i+$num; $k++) {
+      //image
+      if ($config['max_image_size']*sqrt($data[$k]['rate']) > $config['min_image_size']) 
+        $size = $config['max_image_size']*sqrt($data[$k]['rate']);
+      else
+        $size = $config['min_image_size'];
+      $image_url = drupal_get_path('module', 'dailybread') . '/icons/' . ((($size == $config['min_image_size']) or $data[$k]['icon'] == '') ? 'none' : $data[$k]['icon']) . '.svg';
+      $image = array(
+        'path' => $image_url,
+        'alt' => $data[$k]['name'],
+        'title' => $data[$k]['name'],
+        'attributes' => array('width' => $size.'px')
+      );
+      $row1[] = array('data' => theme('image',$image), 'colspan' => $colspan, 'class' => array('db-table-cell-image'));
+      
+      //input
+      $input = array(
+        'element' => array(
+          '#tag' => 'input',
+          '#attributes' => array('value' => $data[$k]['rate']/$sum_rate, 'type' => 'hidden')
+        ),
+      );
+      
+      //text
+      $text = array(
+        'items' => array(
+          //input
+          array(
+            'data' => theme('html_tag',$input),
+            'class' => array('db-table-cell-input')
+          ),
+          //place for money values
+          array('data' => '', 'class' => array('db-table-cell-value','db-recalculate-effect')),
+          //desctiption
+          array('data' => $data[$k]['name'], 'class' => array('db-table-cell-description')),
+        ),
+        'type' => 'ul',
+        'attributes' => array('class' => array('db-table-cell-list')),
+      );
+      
+      $row2[] = array('data' => theme('item_list',$text), 'colspan' => $colspan);
+
+      //stop if no more data
+      if (($k+1) == count($data)) $k = $i+$num;
+    }
+    //add rows into table
+    $i = $k;
+    $rows[] = $row1;
+    $rows[] = array('data' => $row2, 'class' => array('db-table-level','db-table-level-'.$j));
+    $j++;
+  }
+  //create table
+  $table = array(
+    'rows' => $rows,
+    'attributes' => array('class' => array('db-table')),
+  );
+  return theme('table',$table);//print_r($table,1);
+}
+
+/**
+* create table for dailybread
 */
 function _create_table($data,$config,$sum_rate) {
   //create table
@@ -357,6 +434,54 @@ function _create_table($data,$config,$sum_rate) {
     $rows[] = array('data' => $row2, 'class' => array('db-table-level','db-table-level-'.$j));
     $j++;
   }
+  
+  //second part:
+  if ($i < count($data)) $cont = true;
+  else $cont = false;
+  
+  $num = $config['table_rest_number'];
+  while ($cont) {
+    $row2 = array();
+    for ($k=$i; $k < $i+$num; $k++) {
+    //input
+      $input = array(
+        'element' => array(
+          '#tag' => 'input',
+          '#attributes' => array('value' => $data[$k]['rate']/$sum_rate, 'type' => 'hidden')
+        ),
+      );
+      
+      //text
+      $text = array(
+        'items' => array(
+          //input
+          array(
+            'data' => theme('html_tag',$input),
+            'class' => array('db-table-cell-input')
+          ),
+          //place for money values
+          array('data' => '', 'class' => array('db-table-cell-value','db-recalculate-effect')),
+          //desctiption
+          array('data' => $data[$k]['name'], 'class' => array('db-table-cell-description')),
+        ),
+        'type' => 'ul',
+        'attributes' => array('class' => array('db-table-cell-list','db-table-cell-list-2')),
+      );
+      
+      $colspan = $max_row/$num;
+      $row2[] = array('data' => theme('item_list',$text), 'colspan' => $colspan);
+      
+      //stop if no more data
+      if (($k+1) == count($data)) $k = $i+$num;
+      
+    }
+    //add rows into table
+    $i = $k;
+    $rows[] = array('data' => $row2, 'class' => array('db-table-level','db-table-level-'.$j));
+    $j++;
+    if ($k >= count($data)) $cont = false;
+  }
+  
   //create table
   $table = array(
     'rows' => $rows,
