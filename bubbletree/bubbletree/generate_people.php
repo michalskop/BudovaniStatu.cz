@@ -38,6 +38,7 @@ foreach($json as $year => $year_ar) {
   }
 }
 
+$table = '';
 if (count($pols) == 0) echo 'Nemáme informace o lidech na této úrovni.';
 else {
   $table = "<table id='bs-people-table' class='bs-table'>\n<thead>\n<th>Roky</th><th>Jméno</th><th>Základní info</th>\n</thead>\n";

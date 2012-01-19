@@ -50,7 +50,7 @@ if (count($id_ar > 0)) {
 	  //get parent info
 	  if ($idef == '') $parent = 'Státní rozpočet';
 	  else {
-		$url = "http://cz.cecyf.megivps.pl/api/json/dataset/0/view/0/issue/{$thru}/a/{$idef}?fields=name";
+		$url = "http://cz.cecyf.megivps.pl/api/json/dataset/0/view/0/issue/{$thru}/a/{$idef}?fields=name,idef";
 		$object = json_decode(file_get_contents($url));
 		$parent = $object->data[0]->name;
 	  }
@@ -63,6 +63,8 @@ if (count($id_ar > 0)) {
 		foreach ($d as $key => $item) {
 			$rodata[$item->idef][$year] = $item->hodnota;
 			$names[$item->idef] = $item->name;
+			$ids_ar = explode('-',$item->idef);
+			$ids[$item->idef] = end($ids_ar);
 			if (isset($sum[$year])) $sum[$year] += $item->hodnota;
 			else $sum[$year] = $item->hodnota;
 			//$sort[$item->idef] = $item->hodnota;
@@ -94,7 +96,8 @@ if (count($id_ar > 0)) {
 	  $table .=  "<th></th>\n";
 	  $table .=  "</tr>\n";
 		//first row
-	  $table .= "<tr id='{$idef}' class='bs-table-first'><td>{$parent}</td>";
+	  $id = end($id_ar);
+	  $table .= "<tr id='{$idef}' class='bs-table-first'><td>" . ($id != '' ? $id . ' - ' : '') . "{$parent}</td>";
 	  for ($year = $since; $year <= $thru; $year ++) $table .= "<td>".money_format("%!.0n",$sum[$year])."</td>";
 	  $table .=  "<td class='bs-table-small-chart' id='bs-small-chart-{$idef}'>".small_chart($sum,$since,$thru)."</td>\n";
 	  $table .=  "</tr>\n";
@@ -113,7 +116,7 @@ if (count($id_ar > 0)) {
 		//other rows
 	  $zebra = 'odd';
 	  foreach ($rodata as $key => $row) {
-		$table .= "<tr id='{$key}' class='{$zebra}'><td class='bs-table-first'>" . (isset($token[$key]) ? "<a href='#{$_POST['path']}/{$token[$key]}'>" : '') . $names[$key] . (isset($token[$key]) ? "</a>" : '') . "</td>";
+		$table .= "<tr id='{$key}' class='{$zebra}'><td class='bs-table-first'>" . (isset($token[$key]) ? "<a href='#{$_POST['path']}/{$token[$key]}'>" : '') . $ids[$key] . ' - ' . $names[$key] . (isset($token[$key]) ? "</a>" : '') . "</td>";
 		for ($year = $since; $year <= $thru; $year ++)
 			$table .= (isset($row[$year]) ? "<td>".money_format("%!.0n",$row[$year])."</td>" : "<td></td>");
 		$table .= "<td class='bs-table-small-chart' id='bs-small-chart-{$key}'>".small_chart($row,$since,$thru)."</td>";
