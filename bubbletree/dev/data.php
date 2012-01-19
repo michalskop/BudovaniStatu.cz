@@ -6,7 +6,9 @@
 set_time_limit(0);
 
 //global $max_recursion_level;
-$max_recursion_level = 1000;
+$max_recursion_level = 3;
+//exclude idefs on level 1 from recursion limit
+$exclude_recursion_level = array(313,335); 
 //define server, dataset, etc.
 $connection = array(
 	'host' => 'http://cz.cecyf.megivps.pl/api/',
@@ -25,9 +27,11 @@ $data->amount = 1156857957990;
 $level = 'a';
 /*$url = $connection['host'].$connection['format'].'/dataset/'.$connection['dataset'].'/view/'.$connection['view'].'/issue/'.$year.'/'.$level;
 $result = json_decode(file_get_contents($url));*/
-$url = 'http://cz.cecyf.megivps.pl/api/json/dataset/1/view/0/issue/2010/a/';
+$url = 'http://cz.cecyf.megivps.pl/api/json/dataset/0/view/0/issue/2010/a/';
 $result = json_decode(file_get_contents($url));
 $i = 0;
+
+$file = fopen('/home/michal/budovanistatu.cz/bubbletree/dev/datab10.json',"w+");
 
 $recursion_level = 0;
 if ($result->response == 'OK') {
@@ -35,7 +39,6 @@ if ($result->response == 'OK') {
   $data->children = recursion($result,$recursion_level);
 }
 
-$file = fopen('/home/michal/budovanistatu.cz/bubbletree/dev/datab7.json',"w+");
 fwrite($file,json_encode($data));
 fclose($file);
 
@@ -46,9 +49,9 @@ function recursion($result,$recursion_level) {
     $d = new stdClass;
     //add names for bubbletree
     //print_r($row);die();
-    $d->label = $row->name;
-    $d->amount = $row->hodnota;
-    $d->idef = $row->idef;
+    $d->l = $row->name;
+    $d->a = $row->hodnota;
+    $d->i = $row->idef;
     //$d->srcParent = $row->parent;
     //echo $d->urlLabel;die();
     if ((!$row->leaf) and ($recursion_level<$max_recursion_level)) {

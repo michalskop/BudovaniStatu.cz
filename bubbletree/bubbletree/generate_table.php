@@ -98,7 +98,7 @@ if (count($id_ar > 0)) {
 		//first row
 	  $id = end($id_ar);
 	  $table .= "<tr id='{$idef}' class='bs-table-first'><td>" . ($id != '' ? $id . ' - ' : '') . "{$parent}</td>";
-	  for ($year = $since; $year <= $thru; $year ++) $table .= "<td>".money_format("%!.0n",$sum[$year])."</td>";
+	  for ($year = $since; $year <= $thru; $year ++) $table .= "<td class='bs-money'>".money_format("%!.0n",$sum[$year])."</td>";
 	  $table .=  "<td class='bs-table-small-chart' id='bs-small-chart-{$idef}'>".small_chart($sum,$since,$thru)."</td>\n";
 	  $table .=  "</tr>\n";
 	  $table .= "</thead>\n";
@@ -116,9 +116,9 @@ if (count($id_ar > 0)) {
 		//other rows
 	  $zebra = 'odd';
 	  foreach ($rodata as $key => $row) {
-		$table .= "<tr id='{$key}' class='{$zebra}'><td class='bs-table-first'>" . (isset($token[$key]) ? "<a href='#{$_POST['path']}/{$token[$key]}'>" : '') . $ids[$key] . ' - ' . $names[$key] . (isset($token[$key]) ? "</a>" : '') . "</td>";
+		$table .= "<tr id='{$key}' class='{$zebra}'><td class='bs-table-first'>" . (isset($token[$key]) ? "<a href='#{$_POST['path']}/{$token[$key]}'>" : '') . ($names[$key] != '' ? $ids[$key] . ' - ' : '*') . $names[$key] . (isset($token[$key]) ? "</a>" : '') . "</td>";
 		for ($year = $since; $year <= $thru; $year ++)
-			$table .= (isset($row[$year]) ? "<td>".money_format("%!.0n",$row[$year])."</td>" : "<td></td>");
+			$table .= (isset($row[$year]) ? "<td class='bs-money'>".money_format("%!.0n",$row[$year])."</td>" : "<td></td>");
 		$table .= "<td class='bs-table-small-chart' id='bs-small-chart-{$key}'>".small_chart($row,$since,$thru)."</td>";
 		$table .= "</tr>\n";
 		if ($zebra == 'odd') $zebra = 'even';

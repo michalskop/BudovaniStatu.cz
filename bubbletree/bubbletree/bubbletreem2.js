@@ -1312,10 +1312,13 @@ BubbleTree.Utils.formatNumber = function(n) {
 		prefix = '-';
 	}
 	//n = n/10000000;
-	if (n >= 1000000000000) return prefix+Math.round(n / 100000000000)/10 + 'bil';
-	if (n >= 1000000000) return prefix+Math.round(n / 100000000)/10 + 'mld';
-	if (n >= 1000000) return prefix+Math.round(n / 100000)/10 + 'mil';
-	if (n >= 1000) return prefix+Math.round(n / 100)/10 + 'tis';
+	if (n >= 1000000000000) return prefix+Math.round(n / 100000000000)/10 + ' bil';
+	if (n >= 10000000000) return prefix+Math.round(n / 1000000000) + ' mld';
+	if (n >= 1000000000) return prefix+Math.round(n / 100000000)/10 + ' mld';
+	if (n >= 10000000) return prefix+Math.round(n / 1000000) + ' mil';
+	if (n >= 1000000) return prefix+Math.round(n / 100000)/10 + ' mil';
+	if (n >= 10000) return prefix+Math.round(n / 1000) + ' tis';
+	if (n >= 1000) return prefix+Math.round(n / 100)/10 + ' tis';
 	else return Math.round(n*100)/100; //**ms
 	
 };
