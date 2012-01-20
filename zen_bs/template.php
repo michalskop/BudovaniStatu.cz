@@ -152,3 +152,21 @@ function zen_bs_links__system_main_menu(&$vars) {
   }
   return theme_links($vars);
 }
+
+/**
+* adds <meta name="Description" content=" ... " /> into <head>
+* http://yoodey.com/how-change-or-add-meta-desription-keyword-header-drupal-7
+*/
+function zen_bs_page_alter($page) {
+   $meta_description = array(
+            '#type' => 'html_tag',
+            '#tag' => 'meta',
+            '#attributes' => array(
+                'name' => 'description',
+                'content' =>  'Vše, co jste chtěli vědět o výdajích vlády. Rozklikávací státní rozpočet. Zjistěte si, kam jdou Vaše daně. Detailní analýzy.'
+            )
+   );
+
+  
+drupal_add_html_head( $meta_description, 'meta_description' );
+}
