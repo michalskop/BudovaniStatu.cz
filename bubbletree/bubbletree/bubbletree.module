@@ -70,6 +70,11 @@ $div = array(
     'element' => array(
        '#tag' => 'div',
        '#value' => '
+    <!--[if IE]>
+    <div class="messages warning">
+    Uživatelům <b>Internet Explorer</b>: Rozklikávací rozpočet používá moderní technologie a pro svůj běh vyžaduje moderní internetový prohlížeč. V případě problémů použijte prohlížeč Firefox, Google Chrome/Chromium nebo Opera.
+    </div>
+    <![endif]-->
 	<div id="bs-breadcrumbs">Rozpočet</div>
 	<div id="tabs">
 	  <ul>
