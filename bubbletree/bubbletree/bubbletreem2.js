@@ -2159,7 +2159,7 @@ function my_table (node) {
     i++;
   }
   for (j = 1; j < i; j++)
-    breadcrumbs = '<a href="#/v1/' + breads_link[j] + '">' + breads[j] + '</a> >> ' + breadcrumbs;
+    breadcrumbs = '<a href="#/v1/' + encodeURIComponent(breads_link[j]) + '">' + breads[j] + '</a> ›› ' + breadcrumbs;
   breadcrumbs += breads[0];
   $("#bs-breadcrumbs").html(breadcrumbs);
   //$("#bs-breadcrumbs").html(breadcrumbs.substr(0,breadcrumbs.length - 4));
