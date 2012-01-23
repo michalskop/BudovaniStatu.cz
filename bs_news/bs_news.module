@@ -57,8 +57,9 @@ function bs_news_article() {
 	  
 	  $obj = json_decode($json);
 	  
-	  if (count($obj) > 0)
-	    $html = _create_news_table($obj);
+	  if (count($obj) > 0) {
+	    $html = _create_news_table($obj,$limit);
+	  }
 	  else $html = 'No data';
   }
   return $html;
@@ -66,7 +67,7 @@ function bs_news_article() {
 /**
 *
 */
-function _create_news_table($ar) {
+function _create_news_table($ar,$limit) {
   $html = '';
   $i = 0;
   foreach($ar as $item) {
@@ -74,9 +75,11 @@ function _create_news_table($ar) {
     $html .="<p>{$item->text}";
     $html .= "<a class='read' href='news/{$item->id}'>Více</a></p></div><div class='cleaner'></div>";
     $i++;
+    if ($i > $limit) continue;
   }
   return $html;
 }
+
 
 
 ?>

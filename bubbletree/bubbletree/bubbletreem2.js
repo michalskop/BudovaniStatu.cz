@@ -315,6 +315,7 @@ var BubbleTree = function(config, onHover, onUnHover) {
 	 */
 	me.initTween = function() {
 		this.tweenTimer = setInterval(this.loop, 1000/120);
+		//this.tweenTimer = setInterval(this.loop, 240/120);
 	};
 	
 	/*
@@ -2182,7 +2183,7 @@ function getPeople(idef) {
         success: function ( received_data ) {
         	$("#bs-people-ajax-loader").html('');
 			$("#bs-people").html(received_data);
-			callback();
+			if (window.callback) callback();
         },
         error: function ( err ) {
         	$("#bs-people-ajax-loader").html('');
@@ -2288,7 +2289,7 @@ function getHistoricalValues(node) {
         success: function ( received_data ) {
         	$("#bs-table-ajax-loader").html('');
 			$("#bs-table").html(received_data);
-			callback();
+			if (window.callback) callback();
         },
         error: function ( err ) {
         	$("#bs-table-ajax-loader").html('');

@@ -130,3 +130,6 @@
 #tooltip h3, #tooltip div { margin: 0; }
 
 p#vtip #vtipArrow { position: absolute; top: -10px; left: 5px }
+
+/*http://stackoverflow.com/questions/5642815/svg-draws-outside-canvas-boundary-in-internet-explorer-9*/
+svg { overflow: hidden; }

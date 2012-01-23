@@ -59,6 +59,21 @@ tr.even, tr.odd {
   padding: 0em 0em;
 }
 
+.db-table tr td {width: 180px; padding-bottom: 20px;}
+
+.db-table tr.db-table-level-3 td,
+.db-table tr.db-table-level-4 td,
+.db-table tr.db-table-level-5 td,
+.db-table tr.db-table-level-6 td,
+.db-table tr.db-table-level-7 td,
+.db-table tr.db-table-level-8 td,
+.db-table tr.db-table-level-9 td,
+.db-table tr.db-table-level-10 td {padding-bottom: 5px;}
+
+ul.db-table-cell-list-2 {text-align: left; font-size: 0.8em; padding: 0px; margin: 0px;}
+ul.db-table-cell-list-2 li.db-table-cell-value {display: block; float: left; width: 80px;}
+
+
 /*table,th,td
 {
   border-top: 1px solid black;
@@ -87,5 +102,3 @@ tr.even, tr.odd {
 .db-table-level-2 td {
   width: 6.25%;
 }
-
-

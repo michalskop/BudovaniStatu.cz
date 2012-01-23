@@ -121,7 +121,6 @@
     <div id="content" class="column"><div class="section">
       <?php print render($page['highlighted']); ?>
       <?php print $breadcrumb; ?>
-     <div class="bs-content">
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
       <?php if ($title): ?>
@@ -139,7 +138,6 @@
       <?php print render($page['content']); ?>
       <?php print render($page['below_content']); ?>
       <?php print $feed_icons; ?>
-     </div>
     </div></div><!-- /.section, /#content -->
     
 

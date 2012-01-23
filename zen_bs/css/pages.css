@@ -1,4 +1,3 @@
-/**
  * @file
  * Page Styling
  *
@@ -18,7 +17,6 @@ body {
 
 #page-wrapper {
 }
-
 #page {
 }
 
@@ -187,10 +185,13 @@ div#site-name /* The name of the website */ {
 /*
  * Content
  */
+
 #content {
 }
 
 #content .section {
+	width: 1110px;
+	margin: 0px auto;
 }
 
 .region-highlighted {
