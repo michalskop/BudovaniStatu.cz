@@ -1,6 +1,7 @@
 <?php
 /**
 * daily bread application data CZ 2010
+* doplnky: https://docs.google.com/a/g.kohovolit.eu/spreadsheet/ccc?key=0ApmBqWaAzMn_dG1jMFBKdFQ3dUFXNDNjMjU5REo0cWc&hl=en_US#gid=0
 */
 $db_data = array(
 	array('name' => 'Kancelář prezidenta republiky', 'code' => '301', 'icon' => '', 'value' => 378178880),
@@ -15,15 +16,15 @@ $db_data = array(
 	array('name' => 'Ministerstvo financí', 'code' => '312', 'icon' => '', 'value' => 16712959580),
 	array('name' => 'Ministerstvo práce a sociálních věcí', 'code' => '313', 'icon' => 'old-age', 'value' => 476341785750),
 	array('name' => 'Ministerstvo vnitra', 'code' => '314', 'icon' => 'police2', 'value' => 59464280500),
-	array('name' => 'Ministerstvo životního prostředí', 'code' => '315', 'icon' => 'environment', 'value' => 14838924370),
+	array('name' => 'Ministerstvo životního prostředí', 'code' => '315', 'icon' => 'environment', 'value' => 16394443370),
 	array('name' => 'Ministerstvo pro místní rozvoj', 'code' => '317', 'icon' => 'our-streets', 'value' => 34804080980),
 	array('name' => 'Grantová agentura České republiky', 'code' => '321', 'icon' => '', 'value' => 1988598030),
 	array('name' => 'Ministerstvo průmyslu a obchodu', 'code' => '322', 'icon' => 'manufactoring-construction', 'value' => 17031938860),
-	array('name' => 'Ministerstvo dopravy', 'code' => '327', 'icon' => 'transport', 'value' => 63726988830),
+	array('name' => 'Ministerstvo dopravy, SF dopr.infr.', 'code' => '327', 'icon' => 'transport', 'value' => 78910893530),
 	array('name' => 'Český telekomunikační úřad', 'code' => '328', 'icon' => 'communication', 'value' => 561873510),
-	array('name' => 'Ministerstvo zemědělství', 'code' => '329', 'icon' => 'farms', 'value' => 52858668180),
-	array('name' => 'Ministerstvo školství; mládeže a tělovýchovy', 'code' => '333', 'icon' => 'schools', 'value' => 124266208010),
-	array('name' => 'Ministerstvo kultury', 'code' => '334', 'icon' => 'culture', 'value' => 7706358500),
+	array('name' => 'Ministerstvo zemědělství, SZIF', 'code' => '329', 'icon' => 'farms', 'value' => 52999256630),
+	array('name' => 'Ministerstvo školství, mládeže a tělovýchovy', 'code' => '333', 'icon' => 'schools', 'value' => 124266208010),
+	array('name' => 'Ministerstvo kultury, SF kultury ČR, SF ČR PRČ kinematografie', 'code' => '334', 'icon' => 'culture', 'value' => 7758802640),
 	array('name' => 'Ministerstvo zdravotnictví', 'code' => '335', 'icon' => 'ambulance', 'value' => 9422279910),
 	array('name' => 'Ministerstvo spravedlnosti', 'code' => '336', 'icon' => 'courts', 'value' => 20867406460),
 	array('name' => 'Úřad pro ochranu osobních údajů', 'code' => '343', 'icon' => 'family', 'value' => 96732950),
@@ -44,5 +45,8 @@ $db_data = array(
 	array('name' => 'Státní dluh', 'code' => '396', 'icon' => 'public-debt', 'value' => 48740767890),
 	array('name' => 'Operace státních finančních aktiv', 'code' => '397', 'icon' => 'money', 'value' => 261745860),
 	array('name' => 'Všeobecná pokladní správa', 'code' => '398', 'icon' => 'money', 'value' => 131646535170),
+	array('name' => 'Obce (daně)', 'code' => '1001', 'icon' => '', 'value' => 142885500000),
+	array('name' => 'Kraje (daně)', 'code' => '1002', 'icon' => '', 'value' => 45098600000),
+	array('name' => 'Zdravotní pojišťovny', 'code' => '1003', 'icon' => 'ambulance', 'value' => 157118725580),
 );
 ?>

@@ -12,7 +12,7 @@ var max_income_ln = Math.log(max_income);
 
 //income -> tax function
 function income2tax(income) {
-  return 12*income*0.62;
+  return 12*income*0.6164;
 }
 
 //load radio styling
