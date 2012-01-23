@@ -320,7 +320,7 @@ function _create_table2($data,$config,$sum_rate) {
         'path' => $image_url,
         'alt' => $data[$k]['name'],
         'title' => $data[$k]['name'],
-        'attributes' => array('width' => $size.'px')
+        'attributes' => array('width' => $size.'px', 'height' => $size)
       );
       $row1[] = array('data' => theme('image',$image), 'colspan' => $colspan, 'class' => array('db-table-cell-image'));
       

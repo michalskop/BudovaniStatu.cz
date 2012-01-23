@@ -22,7 +22,7 @@ $(function() {
 
 //tax info dialog
 $(function() {
-  $( "#db-tax-info-dialog" ).dialog({autoOpen:false,modal:true});
+  $( "#db-tax-info-dialog" ).dialog({autoOpen:false,modal:true,width:700});
   $("#db-tax-info").click(function() {
     $( "#db-tax-info-dialog" ).dialog('open');
   });
