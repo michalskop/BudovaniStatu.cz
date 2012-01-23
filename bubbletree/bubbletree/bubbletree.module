@@ -25,10 +25,10 @@ function bubbletree_menu() {
 */
 function bubbletree_create_app() {
   //include js + css
-  drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/jquery-1.5.2.min.js');
+  drupal_add_js('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'); //1.5.2
   drupal_add_js("https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js",'external');
   drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/jquery.history.js');
-  drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/raphael.js');
+  drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/raphael-min.js');
   drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/vis4.js');
   drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/Tween.js');
   drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/jquery.tablesorter.min.js');
