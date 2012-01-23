@@ -2289,7 +2289,7 @@ function getHistoricalValues(node) {
         success: function ( received_data ) {
         	$("#bs-table-ajax-loader").html('');
 			$("#bs-table").html(received_data);
-			if (window.callback) callback();
+			callback();
         },
         error: function ( err ) {
         	$("#bs-table-ajax-loader").html('');
