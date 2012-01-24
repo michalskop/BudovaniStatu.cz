@@ -12,7 +12,7 @@ var max_income_ln = Math.log(max_income);
 
 //income -> tax function
 function income2tax(income) {
-  return 12*income*0.6164;
+  return 12*income*1.34*1368/3775.237;
 }
 
 //load radio styling
@@ -97,7 +97,10 @@ function recalculate() {
   $.each($(".db-table-cell-list"),function(index,value) {
     coef = $(this).find("input").val() / $("input:radio[name=db-frequency]:checked").val();
     num = coef*tax;
-    if (num > 10) numHtml = parseInt(num.toFixed(0)).toLocaleString() + ' Kč';
+    if (num > 10) {
+      log10 = Math.ceil(Math.log(num) / Math.log(10));
+      numHtml = parseInt(num.toFixed(-1*(log10)+2)).toLocaleString() + ' Kč';
+    }
     else numHtml = parseFloat(num.toFixed(2)).toLocaleString() + ' Kč';
     $(this).children(".db-table-cell-value").html(numHtml);
   });

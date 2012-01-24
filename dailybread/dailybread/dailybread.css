@@ -25,6 +25,9 @@ margin: 0px;
 #db-tax-info, #db-tax-info-text{
   float:left;
 }
+#db-tax-info {
+  cursor:pointer;
+}
 
 
 
@@ -85,10 +88,6 @@ ul.db-table-cell-list-2 li.db-table-cell-value {display: block; float: left; wid
 
 .db-table-level-2 {
   font-size:.65em;
-}
-
-.db-table-level-3 {
-  font-size:.6em;
 }
 
 .db-table-level-1 td {
