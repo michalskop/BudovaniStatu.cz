@@ -138,7 +138,7 @@ function _create_upper_part($data,$config) {
   $header = array(
     'element' => array(
        '#tag' => 'div',
-       '#value' => 'Měsíční (hrubý) plat Kč:',
+       '#value' => 'Měsíční (hrubý) příjem Kč:',
        '#attributes' => array('class' => array('db-income-header')),
      ),
    );
@@ -269,7 +269,7 @@ function _create_upper_part($data,$config) {
       '#tag' => 'div',
       '#value' => '<p>Aplikace poskytuje <b>základní hrubou představu</b>, kolik platíte daní a kam směřují.</p>
 <p>Vychází z podílu celkových příjmů veřejných rozpočtů na HDP. Zahrnuje tedy mimo daň z příjmu i DPH, spotřební daně, sociální a zdravotní pojištění, atd.</p>
-<p>Princip je obdobný výpočtu "dne daňové svobody" - jedná se o průměrné hodnoty. V zájmu zachování jednoduchosti nebylo možno zahrnout detaily daňových zákonů, neboť jich je ohromné množství (např. rozdíly v dani z příjmu dle počtu dětí, spotřební daň dle používání auta, DPH dle struktury nákupů, atd.)</p>
+<p>Princip je obdobný výpočtu "dne daňové svobody" - jedná se o průměrné hodnoty. V zájmu zachování jednoduchosti nebylo možno zahrnout detaily daňových zákonů, neboť jich je ohromné množství (např. rozdíly mezi zaměstnanci a živnostníky,výše daně z příjmu dle počtu dětí, spotřební daně dle používání auta, DPH dle struktury nákupů, atd.)</p>
 <a href="/vypocet-kam-jdou-moje-dane">Detailní popis výpočtu</a>',
       '#attributes' => array('id' => 'db-tax-info-dialog', 'title' => 'Vaše daně - výpočet'),
     ),
