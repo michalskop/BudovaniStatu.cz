@@ -49,7 +49,7 @@ function bs_news_article() {
 	  $html = "<h1>{$obj->title}</h1>";
 	  $html .= "<div class='article-body'>{$obj->text}</div>";
   } else {
-      $limit = 3;
+      $limit = 10;
 
 	  $url = "http://www.nasipolitici.cz/budovani-statu/new-listing?limit=". $limit;
 	  $json = file_get_contents($url);

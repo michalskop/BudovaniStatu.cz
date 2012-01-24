@@ -32,10 +32,11 @@ function bubbletree_create_app() {
   drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/vis4.js');
   drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/Tween.js');
   drupal_add_js(drupal_get_path('module', 'bubbletree') . '/lib/jquery.tablesorter.min.js');
+  drupal_add_css(drupal_get_path('theme', 'zen_bs') . '/css/jquery-ui-1.8.16.customb.css');
   
   drupal_add_js(drupal_get_path('module', 'bubbletree') . '/bubbletreem2.js');
   
-  drupal_add_css('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css','external');
+  //drupal_add_css('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css','external');
   drupal_add_css(drupal_get_path('module', 'bubbletree') . '/blue/style.css',array('group' => CSS_DEFAULT, 'every_page' => FALSE));
   //drupal_add_html_head_link(array('href' => drupal_get_path('module', 'bubbletree') . '/blue/style.css', 'rel' => 'stylesheet', 'type' => 'text/css', 'media' => 'all'));
   drupal_add_html_head_link(array('href' => drupal_get_path('module', 'bubbletree') . '/bubbletreem.css', 'rel' => 'stylesheet', 'type' => 'text/css', 'media' => 'all'));

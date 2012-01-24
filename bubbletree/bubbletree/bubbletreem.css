@@ -1,11 +1,54 @@
 .bs-table {
   line-height: 1.15em;
-  border-collapse: separate;
-  
+  border-collapse: collapse;
+  border: 1px solid #6AB9E2; 
+}
+
+.bs-table tbody td {
+	border-bottom: 1px solid #6AB9E2;
 }
 
 .bs-table-small-chart {
   padding: 1px;
+}
+
+.bs-people td {
+	vertical-align: top;
+}
+
+.bs-people tr.secondRow td {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #BEDFF2;
+}
+
+.bs-people td.firstCol {
+    color: #0071C4;
+    font-size: 1.1em;
+    font-weight: bold;}
+    
+.bs-people td.year {
+	color: #DE2626;
+	font-size: 0.9em;}
+    
+.bs-people td.secondCol {
+	padding-left: 20px; 
+}    
+
+.bs-people td.secondCol a {
+	color: #000000;
+	display: block;
+	float: right;
+	clear: right;
+	font-size: 0.8em;
+	margin-top: 20px;
+}
+
+.bs-people td.secondCol p {
+	font-size: 0.8em;
+	line-height: 1.4em;
+	padding: 0px;
+	margin: 0px;
 }
 
 .bubbletree-wrapper { 

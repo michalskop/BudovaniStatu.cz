@@ -41,7 +41,10 @@ foreach($json as $year => $year_ar) {
 $table = '';
 if (count($pols) == 0) echo 'Nemáme informace o lidech na této úrovni.';
 else {
-  $table = "<table id='bs-people-table' class='bs-table'>\n<thead>\n<th>Roky</th><th>Jméno</th><th>Základní info</th>\n</thead>\n";
+/*
+ *  puvodni verze
+ * 
+  $table = "<table id='bs-people-table' class='bs-people'>\n<thead>\n<th>Roky</th><th>Jméno</th><th>Základní info</th>\n</thead>\n";
   $table .= "<tbody>\n";
   foreach ($pols as $pol) {
     $y = format_years($pol['years']);
@@ -51,6 +54,21 @@ else {
     $table .= html_entity_decode($pol['text']) . "<a href='{$pol['np_link']}'>Více ...</a></td></tr>";
   }
 }
+*/
+  $table = "<table id='bs-people-table' class='bs-people'>";
+  $table .= "<tbody>\n";
+  foreach ($pols as $pol) {
+    $table .= "<tr><td class='firstCol'>".$pol['name']."</td>";	
+    $y = format_years($pol['years']);
+    $table .= "<td class='secondCol year'>{$y}</td></tr>";
+    
+    if (isset($pol['image']) and ($pol['image'] != '')) $table .= "<tr class='secondRow'><td><img src='{$pol['image']}' alt='{$pol['name']}' /></td><td class='secondCol'>";
+	
+    $table .= html_entity_decode($pol['text']) . "<a href='{$pol['np_link']}'>Více ...</a></td></tr>";
+  }
+}
+
+
 $table .= "</tbody>\n</table>\n";
 echo $table;
 /**
