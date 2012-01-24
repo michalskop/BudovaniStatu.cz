@@ -1,3 +1,4 @@
+/**
  * @file
  * Page Styling
  *
@@ -55,6 +56,18 @@ body {
           display: block;}
     h1 a span {position: relative;
                z-index: -1;}
+    
+    h1.title {font-size: 1.2em;
+              color: #0671C3;}               
+    
+   .content h1 {font-size: 1.2em;
+                color: #0671C3;}               
+ 
+               
+    a#subPage {background: url('../images/h1.jpg') no-repeat;
+          width: 433px;
+          height: 88px;
+          display: block;}               
 
     #icons {float: right;
             position: absolute;
@@ -194,12 +207,29 @@ div#site-name /* The name of the website */ {
 	margin: 0px auto;
 }
 
+#container div.box {width: 1110px;}
+
+                      
+#container .inBox {margin: 10px 0px 20px 15px;
+                  -webkit-border-radius: 8px;
+                  -moz-border-radius: 8px;
+                  border-radius: 8px;
+                  behavior: url('PIE.htc');
+                  width: 1110px;
+                }
+
+#container .inBox.blue {border: 1px solid #6cbae1;
+                     background: url('../images/box-blue-repeater.png') repeat-x;}
+
 .region-highlighted {
 }
 
 .breadcrumb /* The path to the current page in the form of a list of links */ {
   padding-bottom: 0; /* Undo system.css */
+  margin-left: 20px;
+  font-size: 0.8em;
 }
+.breadcrumb a {color: #DE1316;}
 
 h1.title, /* The title of the page */
 h2.node-title, /* Title of a piece of content when it is given in a list of content */
@@ -328,3 +358,65 @@ ul.links li {
  */
 .region-bottom /* Wrapper for any blocks placed in the page bottom region */ {
 }
+
+#bs-breadcrumbs {
+	font-size: 0.8em;
+	
+}
+
+/**
+* Google search
+*/
+#googleSearch {
+    width: 280px;
+}
+#googleSearch tbody {
+    border:0;
+}
+table.gsc-search-box {
+    margin-top: 0;
+}
+
+.content .article p {
+	font-size: 0.9em;
+	margin: 5px 0px 15px 0px;
+}
+
+.content .article p a {
+	color: #E0191C;
+}
+
+.content .article h3 {
+	font-size: 1.1em;
+	margin: 20px 0px 5px 0px;
+	}
+
+.article-body {
+	font-size: 0.9em;
+	line-height: 1.4em;
+	margin-bottom: 10px;
+}
+
+.content .node {
+	font-size: 0.9em;
+	
+}
+
+.content .node a {
+	font-size: 0.7em;
+	color: #E0191C;
+	padding-bottom: 10px;
+}
+
+#bs-methodology p {
+	font-size: 0.9em;
+}
+
+#bs-methodology a {
+	color: #E0191C;
+}
+
+#bs-methodology h2, #bs-methodology h3 {
+	font-size: 0.9em;
+}
+

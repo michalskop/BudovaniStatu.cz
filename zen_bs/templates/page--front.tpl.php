@@ -118,7 +118,7 @@
   <div id="main-wrapper"><div id="main" class="clearfix<?php if ($main_menu || $page['navigation']) { print ' with-navigation'; } ?>">
 
     <div id="container" class="clearfix">
-    <div id="content" class="column"><div class="section">
+    <div id="content" class="column"><div class="section" style="margin-left: 18px;">
       <?php print render($page['highlighted']); ?>
       <?php print $breadcrumb; ?>
       <a id="main-content"></a>
