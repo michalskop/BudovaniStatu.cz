@@ -99,7 +99,8 @@ function recalculate() {
     num = coef*tax;
     if (num > 10) {
       log10 = Math.ceil(Math.log(num) / Math.log(10));
-      numHtml = parseInt(num.toFixed(-1*(log10)+2)).toLocaleString() + ' Kč';
+      num1 = Math.round(num/Math.pow(10,log10-2))*Math.pow(10,log10-2);
+      numHtml = parseInt(num1).toLocaleString() + ' Kč';
     }
     else numHtml = parseFloat(num.toFixed(2)).toLocaleString() + ' Kč';
     $(this).children(".db-table-cell-value").html(numHtml);
