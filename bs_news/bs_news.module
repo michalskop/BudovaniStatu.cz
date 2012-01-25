@@ -47,7 +47,12 @@ function bs_news_article() {
 	  $obj = json_decode($json);
 	  
 	  $html = "<h1>{$obj->title}</h1>";
-	  $html .= "<div class='article-body'>{$obj->text}</div>";
+	  if (isset($obj->images) and isset($obj->images[0]) and $obj->images[0] != '')
+	    $html .= '<div class="article-body"><img src="' . $obj->images[0] . '" alt="" class="article-image" />';
+	  else
+	    $html .= "<div class='article-body'>";
+	  $text = str_replace('      ','<p>',$obj->text);
+	  $html .= "{$text}</div>";
   } else {
       //$limit = 3;
       $limit = 10;

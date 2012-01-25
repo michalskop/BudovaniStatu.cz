@@ -397,6 +397,11 @@ table.gsc-search-box {
 	margin-bottom: 10px;
 }
 
+.article-image {
+  float:left;
+  padding-right: 1em;
+}
+
 .content .node {
 	font-size: 0.9em;
 	
