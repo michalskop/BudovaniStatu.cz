@@ -64,7 +64,33 @@ function dailybread_create_app() {
   
   //create table
   $html_table = _create_table($data,$config,$sum_rate);
-  return $html_upper . $html_radios . $html_table;//print_r($table,1);
+  
+  //add div with link to description
+  $html_div_description = _create_div_description();
+  
+  return $html_upper . $html_radios . $html_table . $html_div_description;//print_r($table,1);
+}
+
+/**
+* create div with link to description
+*/
+function _create_div_description () {
+  /*$rinfo = array(
+    'element' => array(
+      '#tag' => 'span',
+      '#value' => '',
+      '#attributes' => array('id' => 'db-tax-info', 'class' => array('ui-icon','ui-icon-info', 'db-tax-info-open-dialog')),
+    ),
+  );*/
+  
+  $div = array(
+    'element' => array(
+      '#tag' => 'div',
+      '#value'=> 'Jak jsme hodnoty vypočetli?', //theme('html_tag', $rinfo) . 'Jak je to počítáno?',
+      '#attributes' => array('id' => 'db-frequency-texts', 'class' => array('db-tax-info-open-dialog', 'messages', 'status')),
+    ),
+  );
+  return theme('html_tag',$div);
 }
 
 /**
@@ -246,7 +272,7 @@ function _create_upper_part($data,$config) {
     'element' => array(
       '#tag' => 'span',
       '#value' => '',
-      '#attributes' => array('id' => 'db-tax-info', 'class' => array('ui-icon','ui-icon-info')),
+      '#attributes' => array('id' => 'db-tax-info', 'class' => array('ui-icon','ui-icon-info', 'db-tax-info-open-dialog')),
     ),
   );
   $rinfo_text = array(
