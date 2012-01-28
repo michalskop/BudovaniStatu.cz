@@ -25,7 +25,7 @@ margin: 0px;
 #db-tax-info, #db-tax-info-text{
   float:left;
 }
-#db-tax-info {
+.db-tax-info-open-dialog {
   cursor:pointer;
 }
 
@@ -44,6 +44,7 @@ margin: 0px;
   text-align: center;
   border-collapse:collapse;
   line-height: .8em;
+  margin-bottom: 0;
 }
 .db-table .even{
   vertical-align: top;
