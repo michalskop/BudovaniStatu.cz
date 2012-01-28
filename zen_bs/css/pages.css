@@ -425,3 +425,8 @@ table.gsc-search-box {
 	font-size: 0.9em;
 }
 
+.article-image {
+  border: 2px solid #C8E3F4;
+  padding: 0px;
+  margin: 0px 20px 20px 0px;
+}
