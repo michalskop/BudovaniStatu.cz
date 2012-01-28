@@ -294,8 +294,9 @@ function _create_upper_part($data,$config) {
     'element' => array(
       '#tag' => 'div',
       '#value' => '<p>Aplikace poskytuje <b>základní hrubou představu</b>, kolik platíte daní a kam směřují.</p>
-<p>Zahrnuty jsou všechny Vaše platby do veřejných rozpočtů, tedy kromě daní z příjmu i DPH, spotřební daně, sociální a zdravotní pojištění, atd. Vychází se proto z podílu celkových příjmů veřejných rozpočtů na HDP.</p>
+<p>Zahrnuty jsou všechny Vaše platby do veřejných rozpočtů, tedy kromě daní z příjmu i DPH, spotřební daně, sociální a zdravotní pojištění, atd. Vychází se proto z podílu celkových příjmů veřejných rozpočtů na HDP. Je to proto, že např. daň z příjmu fyzických osob představuje zhruba jen 1/10 všech daní.</p>
 <p>Princip je obdobný výpočtu "dne daňové svobody" - jedná se o průměrné hodnoty. V zájmu zachování jednoduchosti nebylo možno zahrnout detaily daňových zákonů, neboť jich je ohromné množství (např. rozdíly mezi zaměstnanci a živnostníky, výše daně z příjmu dle počtu dětí, spotřební daně dle používání auta, DPH dle struktury nákupů, atd.)</p>
+<p>Budeme se ale snažit výpočet upřesnit alespoň v nejdůležitějších bodech.</p>
 <a href="/vypocet-kam-jdou-moje-dane">Detailní popis výpočtu</a>',
       '#attributes' => array('id' => 'db-tax-info-dialog', 'title' => 'Vaše daně - výpočet'),
     ),
