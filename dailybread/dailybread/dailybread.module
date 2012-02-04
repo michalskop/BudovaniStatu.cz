@@ -345,7 +345,7 @@ function _create_table2($data,$config,$sum_rate) {
         $size = $config['max_image_size']*sqrt($data[$k]['rate']);
       else
         $size = $config['min_image_size'];
-      $image_url = drupal_get_path('module', 'dailybread') . '/icons/' . ((($size == $config['min_image_size']) or $data[$k]['icon'] == '') ? 'none' : $data[$k]['icon']) . '.svg';
+      $image_url = drupal_get_path('module', 'dailybread') . '/icons/' . ((($size == $config['min_image_size']) or $data[$k]['icon'] == '') ? 'none' : $data[$k]['icon']) . '.png';
       $image = array(
         'path' => $image_url,
         'alt' => $data[$k]['name'],
@@ -419,7 +419,7 @@ function _create_table($data,$config,$sum_rate) {
         $size = $config['max_image_size']*sqrt($data[$k]['rate']);
       else
         $size = $config['min_image_size'];
-      $image_url = drupal_get_path('module', 'dailybread') . '/icons/' . ((($size == $config['min_image_size']) or $data[$k]['icon'] == '') ? 'none' : $data[$k]['icon']) . '.svg';
+      $image_url = drupal_get_path('module', 'dailybread') . '/icons/' . ((($size == $config['min_image_size']) or $data[$k]['icon'] == '') ? 'none' : $data[$k]['icon']) . '.png';
       $image = array(
         'path' => $image_url,
         'alt' => $data[$k]['name'],
