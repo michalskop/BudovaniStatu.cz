@@ -114,7 +114,7 @@ return $div;
 function _meth_text() {
   $html = '
 <h2>Metodika „rozklikávacího“ rozpočtu</h2>
-<p>Metodika tabulek vychází z třídění výdajů, které používá státní správa, a které je stanoveno zejména <a href="http://www.zakonyprolidi.cz/cs/2000-218">zákonem 218/2000Sb.</a>, a <a href="http://www.zakonyprolidi.cz/cs/2002-353">vyhláškou 353/2002 Sb.</a></p>
+<p>Metodika tabulek vychází z třídění výdajů, které používá státní správa, a které je stanoveno zejména <a href="http://www.zakonyprolidi.cz/cs/2000-218">zákonem 218/2000Sb.</a>, a <a href="http://www.zakonyprolidi.cz/cs/2002-323">vyhláškou 323/2002 Sb.</a></p>
 <p>Zdrojem dat byla veřejně přístupná databáze IDB Aris / ÚFIS spravovaná Ministerstvem financí České republiky.</p>
 <p>Analýza je zaměřena na přehledné zobrazení výdajů státního rozpočtu České republiky a to formou časových řad a dekompozice státního rozpočtu/kapitol/organizací/typu výdaje. Z důvodů vizuálního zobrazení proporcí na jedné straně a exaktností na straně druhé byly zvoleny jak grafické vyjádření hodnot tak i tabulky, oboje v „rozklikávací“ verzi.</p>
 <h3>Popis jednotlivých úrovní</h3>
