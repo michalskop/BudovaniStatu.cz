@@ -71,9 +71,9 @@ $div = array(
     'element' => array(
        '#tag' => 'div',
        '#value' => '
-    <!--[if IE]>
+    <!--[if lte IE 8]>
     <div class="messages warning">
-    Uživatelům <b>Internet Explorer</b>: Rozklikávací rozpočet používá moderní technologie a pro svůj běh tak vyžaduje moderní internetový prohlížeč. V případě problémů prosím použijte prohlížeč Firefox, Google Chrome/Chromium nebo Opera.
+    Omlouváme se uživatelům starších verzí prohlížeče Internet Explorer (IE 6, 7 a 8), v němž dochází k problémům se zobrazením grafů. Rozklikávací rozpočet používá moderní technologie a pracuje s velkými objemy dat, které starší prohlížeče v některých případech nedokáží zpracovat. V případě problémů prosím použijte prohlížeče IE 9, Firefox, Google Chrome/Chromium, Opera či Safari.
     </div>
     <![endif]-->
 	<div id="bs-breadcrumbs">Rozpočet</div>
