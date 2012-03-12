@@ -52,6 +52,7 @@ function bs_news_article() {
 	  else
 	    $html .= "<div class='article-body'>";
 	  $text = str_replace('      ','<p>',$obj->text);
+	  $text = str_replace('<a href="/cs/','<a href="http://nasipolitici.cz/cs/',$text);
 	  $html .= "{$text}</div>";
   } else {
       //$limit = 3;
