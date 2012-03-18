@@ -74,8 +74,13 @@ if (count($id_ar > 0)) {
 	  //sort array by thru
 	  //print_r($sort);//die();
 	  //array_multisort($sort, SORT_DESC, $rodata);
-	  uasort($rodata, "custom_sort");
-	  //print_r($rodata);//die();
+	  
+	  //sorting by values in given year:
+	  //uasort($rodata, "custom_sort");
+	  
+	  //sorting by idef:
+	  ksort($rodata);
+	  //print_r($rodata);die();
 	  	  
 	  //get tokens
 	  if (isset($_POST['token']) and ($_POST['token'] != '')) {
