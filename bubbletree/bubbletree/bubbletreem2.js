@@ -2267,7 +2267,7 @@ function getHistoricalValues(node) {
             6: {sorter:'csNumberFormat'},
             7: {sorter:'csNumberFormat'},
           },
-          sortList: [[7,1]],
+          sortList: [[0,0]],
           widgets: ['zebra'],
         });
     };
