@@ -46,7 +46,7 @@ function bubbletree_create_app() {
 	   //before ajax call
 	   $('#bubbletree-ajax-loader').html('<img src=\"".drupal_get_path('module', 'bubbletree') . "/ajax-loader.gif\" alt=\"Wait\" /> Nahrávám data rozpočtu, může to chvíli trvat ...');
        $.ajax({
-		  url: '".drupal_get_path('module', 'bubbletree') . "/data" . (isset($_GET['scope']) ? "b9" : "b12") . ".json',
+		  url: '".drupal_get_path('module', 'bubbletree') . "/data2011_" . (isset($_GET['scope']) ? "2" : "1") . ".json',
 		  dataType: 'json',
 		  success: function (d) {	
 			new BubbleTree({
